@@ -1,0 +1,39 @@
+extends layouts/main
+
+block content
+    div
+        div
+            a(href=routes.home) 
+                h1 Instagram
+        div 
+            i.far.fa-compass
+    div 
+        div
+            a(href="") 
+                img(src="", alt="")
+                span Your Story
+        div
+            a(href="") 
+                img(src="", alt="")
+                span Your Story
+        div
+            a(href="") 
+                img(src="", alt="")
+                span Your Story
+    div
+        each post in posts
+            div
+                div
+                    div
+                        div
+                            img(src=`${post.photo}`, alt="" width="30" height="30")
+                        div
+                            h2=post.username
+                            h3=post.location
+                    div
+                        | add icon
+                div
+        div
+            form(action="") 
+                input(type="file", name="")
+                
