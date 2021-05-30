@@ -1,39 +1,84 @@
-extends layouts/main
-
-block content
-    div
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="icon" href="data:;base64,iVBORw0KGgo=")
+        script(src="https://kit.fontawesome.com/baa94097a5.js" crossorigin="anonymous")
+        title Name (@yusername) • #{siteName}
+    body
         div
-            a(href=routes.home) 
-                h1 Instagram
-        div 
-            i.far.fa-compass
-    div 
-        div
-            a(href="") 
-                img(src="", alt="")
-                span Your Story
-        div
-            a(href="") 
-                img(src="", alt="")
-                span Your Story
-        div
-            a(href="") 
-                img(src="", alt="")
-                span Your Story
-    div
-        each post in posts
-            div
+            form(method="post" enctype="multipart/form-data")
+                input(type="file" accept="image/jpeg")
+            header
+                div
+                    a(href=routes.home)
+                        img(src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png", alt="") 
+                div
+                    input(type="text" placeholder="Search" value="")
                 div
                     div
-                        div
-                            img(src=`${post.photo}`, alt="" width="30" height="30")
-                        div
-                            h2=post.username
-                            h3=post.location
+                        a(href=routes.home) 
+                            i.fas.fa-home
+                        a(href="")
+                            i.far.fa-map
+                        a(href="")
+                            i.far.fa-compass
+                        a(href="") 
+                            i.far.fa-heart
+                        a(href="")
+                            i.far.fa-user-circle
+            main
+                section
+                    article
+                        div.article-header
+                            div 
+                                canvas
+                                img(src="", alt="username")
+                            div
+                                button
+                                    i.fas.fa-ellipsis-h
+                        div.article-main
+                            div
+                                img(src="", alt="post")
+                        div.article-footer
+                            section
+                                div
+                                    span
+                                        i.far.fa-heart
+                                    span
+                                        i.far.fa-comment
+                                    span
+                                        i.far.fa-map
+                                div 
+                                    span
+                                        i.far.fa-bookmark
+                            section
+                                a(href="")
+                                    span 123,456,789
+                                    |likes
+                            div.comments
+                                div.post-comment-root
+                                    span username
+                                    span ✔🌶
+                                div.post-comment-root
+                                    a(href="") View all
+                                        span 53,212,122
+                                        |comments
+                                div.post-comment-root
+                                    div.comment
+                                        span username
+                                        span comment
+                                    span.heart
+                            div.datetime
+                                a(href="") 
+                                    time 3 days ago
+                            section
+                                form(method="post") 
+                                    button
+                                        i.far.fa-smile
+                                    textarea(name="", placeholder="Add a comment...")
+                                    button(type="submit") Post
+                    //- 사이드바
                     div
-                        | add icon
-                div
-        div
-            form(action="") 
-                input(type="file", name="")
-                

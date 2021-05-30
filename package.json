@@ -4,7 +4,7 @@
   "description": "Implements Instagram with node & vanilla javascript",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node src/server.js --delay 2"
+    "dev:server": "nodemon --exec babel-node src/init.js --delay 2"
   },
   "repository": {
     "type": "git",
