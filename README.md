@@ -17,16 +17,4 @@
       /post/:id
       /post/:id/edit
 
-  <!-- / -> home
-  /explore
-  /signup
-  /login
-  /users/ -> users
-  /users/:id -> /:id/profile
-  /users/:id/edit /:id/edit-profile
-  /users/:id/create-post
-  /users/:id/create-video
-  /posts -> photos and videos
-  /posts/:id
-  /posts/:id/edit
-  /posts/:id/delete -->
+- [] MongoDB

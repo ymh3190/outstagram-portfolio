@@ -1,0 +1,57 @@
+extends layouts/main
+
+block content
+    header
+        div
+            button
+                img(src=`/static/59950687.png`, alt="Change Profile Photo")
+        section 
+            div
+                h2 username
+                div
+                    a(href="") edit profile
+                div
+                    button
+                        i.fas.fa-cog
+            ul
+                li 
+                    span
+                        span 27
+                        | posts
+                li 
+                    a(href=`${routes.user(user.id)}/followers`) 
+                        span 27
+                        | followers
+                li 
+                    a(href=`${routes.user(user.id)}/following`) 
+                        span 27
+                        | following
+            div
+                h1 name
+                br
+                span description
+    div
+        a(href=routes.user(user.id))
+            i.far.fa-list-alt
+            span posts
+        a(href=routes.channel(user.id))
+            i.fas.fa-film
+            span igtv
+        a(href=routes.saved(user.id))
+            i.far.fa-bookmark
+            span saved
+        a(href=routes.tagged(user.id))
+            i.fas.fa-portrait
+            span tagged
+    div
+        article
+            div
+                div
+                    div
+                        img(src="/static/59950687.png", alt="Photo")
+                div 
+                    div
+                        img(src="/static/59950687.png", alt="Photo")
+                div 
+                    div
+                        img(src="/static/59950687.png", alt="Photo")

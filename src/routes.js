@@ -2,6 +2,9 @@ const HOME = "/";
 const EXPLORE = "/explore";
 const LOGOUT = "/logout";
 const USER = "/:id";
+const CHANNEL = "channel";
+const SAVED = "saved";
+const TAGGED = "tagged";
 const CREATE_POST = "/create/post";
 const ACCOUNTS_EMAILSIGNUP = "/accounts/emailsignup";
 const ACCOUNTS_LOGIN = "/accounts/login";
@@ -12,41 +15,45 @@ const routes = {
   home: HOME,
   explore: EXPLORE,
   logout: LOGOUT,
-  user: USER,
+  user: (id) => {
+    if (id) {
+      return `/${id}`;
+    } else {
+      return USER;
+    }
+  },
+  channel: (id) => {
+    if (id) {
+      return `/${id}/channel`;
+    } else {
+      return CHANNEL;
+    }
+  },
+  saved: (id) => {
+    if (id) {
+      return `/${id}/saved`;
+    } else {
+      return SAVED;
+    }
+  },
+  tagged: (id) => {
+    if (id) {
+      return `/${id}/tagged`;
+    } else {
+      return TAGGED;
+    }
+  },
   createPost: CREATE_POST,
   accountsEmailsignup: ACCOUNTS_EMAILSIGNUP,
   accountsLogin: ACCOUNTS_LOGIN,
-  post: POST,
+  post: (id) => {
+    if (id) {
+      return `/post/${id}`;
+    } else {
+      return POST;
+    }
+  },
   editPost: EDIT_POST,
 };
 
 export default routes;
-
-/* const HOME = "/";
-const EXPLORE = "/explore";
-const SIGNIN = "/signup";
-const LOGIN = "/login";
-
-const USERS = "/users";
-const PROFILE = "/:id/profile";
-const EDIT_PROFILE = "/:id/edit-profile";
-const CREATE_POST = "/:id/create-post";
-const CREATE_VIDEO = "/:id/create-video";
-
-const POSTS = "/posts";
-const POST = "/:id/";
-
-const routes = {
-  home: HOME,
-  explore: EXPLORE,
-  signin: SIGNIN,
-  login: LOGIN,
-  users: USERS,
-  profile: PROFILE,
-  editProfile: EDIT_PROFILE,
-  createPost: CREATE_POST,
-  createVideo: CREATE_VIDEO,
-  posts: POSTS,
-};
-
-export default routes; */

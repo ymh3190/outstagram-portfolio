@@ -4,7 +4,9 @@
   "description": "Implements Instagram with node & vanilla javascript",
   "main": "index.js",
   "scripts": {
-    "dev:server": "nodemon --exec babel-node src/init.js --delay 2"
+    "dev:server": "nodemon --exec babel-node src/init.js --delay 2",
+    "dev:assets": "cross-env WEBPACK_ENV=development webpack -w",
+    "build:assets": "cross-env WEBPACK_ENV=production webpack"
   },
   "repository": {
     "type": "git",
@@ -17,14 +19,34 @@
   },
   "homepage": "https://github.com/ymh3190/instagram-portfolio#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "body-parser": "^1.19.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "mongoose": "^5.12.12",
     "morgan": "^1.10.0",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/node": "^7.14.2",
     "@babel/preset-env": "^7.14.4",
-    "nodemon": "^2.0.7"
+    "autoprefixer": "^10.2.6",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.6",
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^3.4.0",
+    "mini-css-extract-plugin": "^1.6.0",
+    "nodemon": "^2.0.7",
+    "postcss-loader": "^5.3.0",
+    "prettier": "^2.3.0",
+    "sass": "^1.34.0",
+    "sass-loader": "^11.1.1"
   }
 }

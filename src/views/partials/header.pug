@@ -1,0 +1,25 @@
+header
+    div
+        div
+            a(href=routes.home)
+                img(src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png", alt="") 
+        div
+            input(type="text" placeholder="Search" value="")
+            div
+                div(aria-hidden="true")
+                    div
+                        h4 Recent
+                        div No recent searches.
+                    div 
+        div
+            div
+                a(href=routes.home) 
+                    i.fas.fa-home
+                a(href="")
+                    i.far.fa-map
+                a(href=routes.explore)
+                    i.far.fa-compass
+                a(href="") 
+                    i.far.fa-heart
+                a(href=routes.user(user.id))
+                    i.far.fa-user-circle

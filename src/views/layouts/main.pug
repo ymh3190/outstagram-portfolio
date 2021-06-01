@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="icon" href="data:;base64,iVBORw0KGgo=")
+        script(src="https://kit.fontawesome.com/baa94097a5.js" crossorigin="anonymous")
+        link(rel="stylesheet", href="/static/styles.css")
+        title Name (@yusername) • #{siteName}
+    body
+        div
+            form(method="post" enctype="multipart/form-data" role="presentation")
+                input(type="file" accept="image/*, video/*")
+            include ../partials/header
+            section
+                main
+                    div
+                        block content
+        script(src="/static/main.js") 
