@@ -74,15 +74,17 @@ block content
                             button(type="submit") Log In
                             div
                                 button(type="button")
-                                    span
-                                        i.fab.fa-facebook
-                                    span
-                                        |Log in with Facebook
+                                    a(href="") 
+                                        span
+                                            i.fab.fa-facebook
+                                        span
+                                            |Log in with Facebook
                                 button(type="button")
-                                    span
-                                        i.fab.fa-github
-                                    span
-                                        |Log in with Github
+                                    a(href=routes.github) 
+                                        span
+                                            i.fab.fa-github
+                                        span
+                                            |Log in with Github
                     div
                         p Don't have an account? 
                         a(href=`/accounts`+routes.emailSignup)

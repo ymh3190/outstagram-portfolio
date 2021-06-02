@@ -31,3 +31,29 @@ export const postLogin = passport.authenticate("local", {
   failureRedirect: `/accounts${routes.login}`,
   successRedirect: routes.home,
 });
+
+export const githubLogin = passport.authenticate("github");
+export const postGithubLogin = async (_, __, profile, cb) => {
+  const {
+    _json: { login, id, avatar_url: avatarUrl, email, name },
+  } = profile;
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      user.githubId = id;
+      await user.save();
+      return cb(null, user);
+    } else {
+      const newUser = await User.create({
+        email,
+        name,
+        username: login,
+        githubId: id,
+        profilePhoto: avatarUrl,
+      });
+      return cb(null, newUser);
+    }
+  } catch (error) {
+    return cb(error);
+  }
+};

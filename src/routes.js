@@ -1,17 +1,30 @@
+// Root
 const HOME = "/";
 const EXPLORE = "/explore";
 const LOGOUT = "/logout";
+
+// User
 const USER = "/:id";
 const CHANNEL = "channel";
 const SAVED = "saved";
 const TAGGED = "tagged";
+
+// Create
 const CREATE_POST = "/create/post";
+
+// Accounts
 const ACCOUNTS = "/accounts";
 const EMAILSIGNUP = "/emailsignup";
 const LOGIN = "/login";
 const EDIT = "/edit";
+
+// Post
 const POST = "/post/:id";
 const EDIT_POST = "/post/:id/edit";
+
+// Github
+const GITHUB = "/auth/github";
+const GITHUB_CALLBACK = "/auth/github/callback";
 
 const routes = {
   home: HOME,
@@ -58,6 +71,8 @@ const routes = {
     }
   },
   editPost: EDIT_POST,
+  github: GITHUB,
+  githubCallback: GITHUB_CALLBACK,
 };
 
 export default routes;
