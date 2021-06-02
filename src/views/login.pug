@@ -1,0 +1,25 @@
+extends layouts/main
+
+block content
+    div
+        div
+            h1 Instagram
+            form(action=`/accounts`+routes.login, method="post")
+                input(type="text" name="username" placeholder="Email")
+                input(type="password", name="password" placeholder="Password")
+                button(type="submit") Log In
+                div
+                    button(type="button")
+                        span
+                            i.fab.fa-facebook
+                        span
+                            |Log in with Facebook
+                    button(type="button")
+                        span
+                            i.fab.fa-github
+                        span
+                            |Log in with Github
+        div
+            p Don't have an account? 
+            a(href=`/accounts`+routes.emailSignup)
+                span Sign up

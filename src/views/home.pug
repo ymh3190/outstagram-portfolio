@@ -2,61 +2,90 @@ extends layouts/main
 
 block content
     article
-        div.article-header
-            div 
+        if user
+            div.article-header
+                div 
+                    div
+                        canvas
+                        a(href=routes.home) 
+                            img(src="/static/59950687.png", alt="username" width="50" height="50")
+                    div
+                        div
+                            span
+                                a(href="") username
+                        div
+                            a(href="") location 
                 div
-                    canvas
-                    a(href=routes.home) 
-                        img(src="/static/59950687.png", alt="username" width="50" height="50")
+                    button
+                        i.fas.fa-ellipsis-h
+            div.article-main
                 div
+                    img(src="/static/59950687.png", alt="post")
+            div.article-footer
+                section
                     div
                         span
-                            a(href="") username
-                    div
-                        a(href="") location 
-            div
-                button
-                    i.fas.fa-ellipsis-h
-        div.article-main
-            div
-                img(src="/static/59950687.png", alt="post")
-        div.article-footer
-            section
-                div
-                    span
-                        i.far.fa-heart
-                    span
-                        i.far.fa-comment
-                    span
-                        i.far.fa-map
-                div 
-                    span
-                        i.far.fa-bookmark
-            section
-                a(href="")
-                    span 123,456,789
-                    |likes
-            div.comments
-                div.post-comment-root
-                    span username
-                    span ✔🌶
-                div.post-comment-root
-                    a(href="") View all
-                        span 53,212,122
-                        |comments
-                div.post-comment-root
-                    div.comment
+                            i.far.fa-heart
+                        span
+                            i.far.fa-comment
+                        span
+                            i.far.fa-map
+                    div 
+                        span
+                            i.far.fa-bookmark
+                section
+                    a(href="")
+                        span 123,456,789
+                        |likes
+                div.comments
+                    div.post-comment-root
                         span username
-                        span comment
-                    span.heart
-            div.datetime
-                a(href="") 
-                    time 3 days ago
-            section
-                form(method="post") 
-                    button
-                        i.far.fa-smile
-                    textarea(name="", placeholder="Add a comment...")
-                    button(type="submit") Post
-    //- 사이드바
-    div
+                        span ✔🌶
+                    div.post-comment-root
+                        a(href="") View all
+                            span 53,212,122
+                            |comments
+                    div.post-comment-root
+                        div.comment
+                            span username
+                            span comment
+                        span.heart
+                div.datetime
+                    a(href="") 
+                        time 3 days ago
+                section
+                    form(method="post") 
+                        button
+                            i.far.fa-smile
+                        textarea(name="", placeholder="Add a comment...")
+                        button(type="submit") Post
+            //- 사이드바
+            div
+        else
+            div
+                div
+                    img(src="/static/59950687.png", alt="")
+                div
+                    div
+                        h1 Instagram
+                        form(action=`/accounts`+routes.login, method="post")
+                            input(type="text" name="username" placeholder="Email")
+                            input(type="password", name="password" placeholder="Password")
+                            button(type="submit") Log In
+                            div
+                                button(type="button")
+                                    span
+                                        i.fab.fa-facebook
+                                    span
+                                        |Log in with Facebook
+                                button(type="button")
+                                    span
+                                        i.fab.fa-github
+                                    span
+                                        |Log in with Github
+                    div
+                        p Don't have an account? 
+                        a(href=`/accounts`+routes.emailSignup)
+                            span Sign up
+
+                    

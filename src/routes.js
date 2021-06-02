@@ -6,8 +6,10 @@ const CHANNEL = "channel";
 const SAVED = "saved";
 const TAGGED = "tagged";
 const CREATE_POST = "/create/post";
-const ACCOUNTS_EMAILSIGNUP = "/accounts/emailsignup";
-const ACCOUNTS_LOGIN = "/accounts/login";
+const ACCOUNTS = "/accounts";
+const EMAILSIGNUP = "/emailsignup";
+const LOGIN = "/login";
+const EDIT = "/edit";
 const POST = "/post/:id";
 const EDIT_POST = "/post/:id/edit";
 
@@ -44,8 +46,10 @@ const routes = {
     }
   },
   createPost: CREATE_POST,
-  accountsEmailsignup: ACCOUNTS_EMAILSIGNUP,
-  accountsLogin: ACCOUNTS_LOGIN,
+  accounts: ACCOUNTS,
+  emailSignup: EMAILSIGNUP,
+  login: LOGIN,
+  edit: EDIT,
   post: (id) => {
     if (id) {
       return `/post/${id}`;
