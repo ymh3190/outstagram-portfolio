@@ -51,6 +51,42 @@ export const postGithubLogin = async (_, __, profile, cb) => {
         githubId: id,
         profilePhoto: avatarUrl,
       });
+      console.log(newUser);
+      return cb(null, newUser);
+    }
+  } catch (error) {
+    return cb(error);
+  }
+};
+
+export const facebookLogin = passport.authenticate("facebook", {
+  scope: "email",
+});
+export const postFacebookLogin = async (_, __, profile, cb) => {
+  const {
+    _json: {
+      email,
+      name,
+      id,
+      picture: {
+        data: { url: avatarUrl },
+      },
+    },
+  } = profile;
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      user.facebookId = id;
+      await user.save();
+      return cb(null, user);
+    } else {
+      const newUser = await User.create({
+        email,
+        name,
+        facebookId: id,
+        profilePhoto: avatarUrl,
+      });
+      console.log(newUser);
       return cb(null, newUser);
     }
   } catch (error) {

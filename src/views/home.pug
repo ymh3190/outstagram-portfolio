@@ -72,19 +72,7 @@ block content
                             input(type="text" name="username" placeholder="Email")
                             input(type="password", name="password" placeholder="Password")
                             button(type="submit") Log In
-                            div
-                                button(type="button")
-                                    a(href="") 
-                                        span
-                                            i.fab.fa-facebook
-                                        span
-                                            |Log in with Facebook
-                                button(type="button")
-                                    a(href=routes.github) 
-                                        span
-                                            i.fab.fa-github
-                                        span
-                                            |Log in with Github
+                            include ./partials/socialLogin
                     div
                         p Don't have an account? 
                         a(href=`/accounts`+routes.emailSignup)

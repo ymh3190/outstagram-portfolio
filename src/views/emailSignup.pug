@@ -7,17 +7,7 @@ block content
             div
                 form(action=`/accounts`+routes.emailSignup, method="post")
                     h2 Sign up to see photos and videos from your friends.
-                    div
-                        button(type="button")
-                            span
-                                i.fab.fa-facebook
-                            span
-                                |Log in with Facebook
-                        button(type="button")
-                            span
-                                i.fab.fa-github
-                            span
-                                |Log in with Github
+                    include ./partials/socialLogin
                     input(type="text" name="email" placeholder="Email" required)
                     input(type="text" name="fullName" placeholder="Full Name" required)
                     input(type="text" name="username" placeholder="Username" required)

@@ -1,6 +1,10 @@
 import passport from "passport";
 import GitHubStrategy from "passport-github";
-import { postGithubLogin } from "./controllers/accountsController";
+import FacebookStrategy from "passport-facebook";
+import {
+  postFacebookLogin,
+  postGithubLogin,
+} from "./controllers/accountsController";
 import User from "./models/User";
 import routes from "./routes";
 
@@ -14,6 +18,18 @@ passport.use(
       callbackURL: routes.gitHubCallback,
     },
     postGithubLogin
+  )
+);
+
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: process.env.FB_ID,
+      clientSecret: process.env.FB_SECRET,
+      callbackURL: routes.facebookCallback,
+      profileFields: ["id", "displayName", "picture", "email"],
+    },
+    postFacebookLogin
   )
 );
 

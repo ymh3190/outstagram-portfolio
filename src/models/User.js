@@ -10,12 +10,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  username: {
-    type: String,
-    required: true,
-  },
-  githubId: String,
-  facebookId: String,
+  username: String,
+  githubId: Number,
+  facebookId: Number,
   profilePhoto: String,
   webSite: String,
   bio: String,
@@ -23,7 +20,7 @@ const UserSchema = new mongoose.Schema({
   gender: String,
 });
 
-UserSchema.plugin(passportLocalMongoose);
+UserSchema.plugin(passportLocalMongoose, { usernameField: "email" });
 
 const model = mongoose.model("User", UserSchema);
 export default model;
