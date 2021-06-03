@@ -2,9 +2,11 @@ import passport from "passport";
 import GitHubStrategy from "passport-github";
 import FacebookStrategy from "passport-facebook";
 import KakaoStrategy from "passport-kakao";
+import GoogleStrategy from "passport-google-oauth20";
 import {
   postFacebookLogin,
   postGithubLogin,
+  postGoogleLogin,
   postKakaoLogin,
 } from "./controllers/accountsController";
 import User from "./models/User";
@@ -43,6 +45,17 @@ passport.use(
       callbackURL: routes.kakaoCallback,
     },
     postKakaoLogin
+  )
+);
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GG_ID,
+      clientSecret: process.env.GG_SECRET,
+      callbackURL: routes.googleCallback,
+    },
+    postGoogleLogin
   )
 );
 

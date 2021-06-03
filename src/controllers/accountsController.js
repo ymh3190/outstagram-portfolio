@@ -59,7 +59,7 @@ export const postGithubLogin = async (_, __, profile, cb) => {
 };
 
 export const facebookLogin = passport.authenticate("facebook", {
-  scope: "email",
+  scope: ["email"],
 });
 export const postFacebookLogin = async (_, __, profile, cb) => {
   const {
@@ -68,7 +68,7 @@ export const postFacebookLogin = async (_, __, profile, cb) => {
       name,
       id,
       picture: {
-        data: { url: avatarUrl },
+        data: { url: pictureUrl },
       },
     },
   } = profile;
@@ -83,7 +83,7 @@ export const postFacebookLogin = async (_, __, profile, cb) => {
         email,
         name,
         facebookId: id,
-        profilePhoto: avatarUrl,
+        profilePhoto: pictureUrl,
       });
       return cb(null, newUser);
     }
@@ -94,7 +94,6 @@ export const postFacebookLogin = async (_, __, profile, cb) => {
 
 export const kakaoLogin = passport.authenticate("kakao");
 export const postKakaoLogin = async (_, __, profile, cb) => {
-  console.log(profile);
   const {
     _json: {
       id,
@@ -114,6 +113,36 @@ export const postKakaoLogin = async (_, __, profile, cb) => {
         name: nickname,
         kakaoId: id,
         profilePhoto: profileImage,
+      });
+      return cb(null, newUser);
+    }
+  } catch (error) {
+    return cb(error);
+  }
+};
+
+export const googleLogin = passport.authenticate("google", {
+  scope: [
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/userinfo.email",
+  ],
+});
+export const postGoogleLogin = async (_, __, profile, cb) => {
+  const {
+    _json: { sub, name, picture, email },
+  } = profile;
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      user.googleId = sub;
+      await user.save();
+      return cb(null, user);
+    } else {
+      const newUser = await User.create({
+        email,
+        username: name,
+        googleId: sub,
+        profilePhoto: picture,
       });
       return cb(null, newUser);
     }

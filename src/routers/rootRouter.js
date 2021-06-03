@@ -3,6 +3,7 @@ import passport from "passport";
 import {
   facebookLogin,
   githubLogin,
+  googleLogin,
   kakaoLogin,
 } from "../controllers/accountsController";
 import { explore, home, post } from "../controllers/postController";
@@ -36,6 +37,15 @@ rootRouter.get(routes.kakao, kakaoLogin);
 rootRouter.get(
   routes.kakaoCallback,
   passport.authenticate("kakao", { failureRedirect: routes.login }),
+  (_, res) => {
+    res.redirect(routes.home);
+  }
+);
+
+rootRouter.get(routes.google, googleLogin);
+rootRouter.get(
+  routes.googleCallback,
+  passport.authenticate("google", { failureRedirect: routes.login }),
   (_, res) => {
     res.redirect(routes.home);
   }

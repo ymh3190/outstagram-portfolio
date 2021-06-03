@@ -17,4 +17,16 @@
       /post/:id
       /post/:id/edit
 
-- [] MongoDB
+- [x] MongoDB
+
+      models
+      User
+      Post
+
+- [x] OAuth
+
+      local
+      github
+      facebook
+      kakao
+      google

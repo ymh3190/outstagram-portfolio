@@ -14,6 +14,7 @@ const UserSchema = new mongoose.Schema({
   githubId: Number,
   facebookId: Number,
   kakaoId: Number,
+  googleId: Number,
   profilePhoto: String,
   webSite: String,
   bio: String,
