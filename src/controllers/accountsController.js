@@ -51,7 +51,6 @@ export const postGithubLogin = async (_, __, profile, cb) => {
         githubId: id,
         profilePhoto: avatarUrl,
       });
-      console.log(newUser);
       return cb(null, newUser);
     }
   } catch (error) {
@@ -86,7 +85,36 @@ export const postFacebookLogin = async (_, __, profile, cb) => {
         facebookId: id,
         profilePhoto: avatarUrl,
       });
-      console.log(newUser);
+      return cb(null, newUser);
+    }
+  } catch (error) {
+    return cb(error);
+  }
+};
+
+export const kakaoLogin = passport.authenticate("kakao");
+export const postKakaoLogin = async (_, __, profile, cb) => {
+  console.log(profile);
+  const {
+    _json: {
+      id,
+      properties: { nickname, profile_image: profileImage },
+      kakao_account: { email },
+    },
+  } = profile;
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      user.kakaoId = id;
+      await user.save();
+      return cb(null, user);
+    } else {
+      const newUser = await User.create({
+        email,
+        name: nickname,
+        kakaoId: id,
+        profilePhoto: profileImage,
+      });
       return cb(null, newUser);
     }
   } catch (error) {

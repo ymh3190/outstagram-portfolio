@@ -1,9 +1,11 @@
 import passport from "passport";
 import GitHubStrategy from "passport-github";
 import FacebookStrategy from "passport-facebook";
+import KakaoStrategy from "passport-kakao";
 import {
   postFacebookLogin,
   postGithubLogin,
+  postKakaoLogin,
 } from "./controllers/accountsController";
 import User from "./models/User";
 import routes from "./routes";
@@ -30,6 +32,17 @@ passport.use(
       profileFields: ["id", "displayName", "picture", "email"],
     },
     postFacebookLogin
+  )
+);
+
+passport.use(
+  new KakaoStrategy(
+    {
+      clientID: process.env.KA_ID,
+      clientSecret: process.env.KA_SECRET,
+      callbackURL: routes.kakaoCallback,
+    },
+    postKakaoLogin
   )
 );
 

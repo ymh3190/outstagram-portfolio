@@ -13,6 +13,7 @@ const UserSchema = new mongoose.Schema({
   username: String,
   githubId: Number,
   facebookId: Number,
+  kakaoId: Number,
   profilePhoto: String,
   webSite: String,
   bio: String,
