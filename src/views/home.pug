@@ -2,7 +2,7 @@ extends layouts/main
 
 block content
     article
-        if user
+        if loggedUser
             div.article-header
                 div 
                     div
@@ -12,7 +12,7 @@ block content
                     div
                         div
                             span
-                                a(href=routes.user(user.id)) username
+                                a(href="") username
                         div
                             a(href="") location 
                 div

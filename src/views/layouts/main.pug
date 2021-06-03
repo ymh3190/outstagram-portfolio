@@ -10,7 +10,7 @@ html(lang="en")
         title Name (@yusername) • #{siteName}
     body
         div
-            if user
+            if loggedUser
                 form(method="post" enctype="multipart/form-data" role="presentation")
                     input(type="file" accept="image/*, video/*")
                 include ../partials/header

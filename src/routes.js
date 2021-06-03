@@ -4,7 +4,7 @@ const EXPLORE = "/explore";
 const LOGOUT = "/logout";
 
 // User
-const USER = "/:id";
+const USER = "/:username";
 const CHANNEL = "channel";
 const SAVED = "saved";
 const TAGGED = "tagged";
@@ -42,30 +42,30 @@ const routes = {
   home: HOME,
   explore: EXPLORE,
   logout: LOGOUT,
-  user: (id) => {
-    if (id) {
-      return `/${id}`;
+  user: (username) => {
+    if (username) {
+      return `/${username}`;
     } else {
       return USER;
     }
   },
-  channel: (id) => {
-    if (id) {
-      return `/${id}/channel`;
+  channel: (username) => {
+    if (username) {
+      return `/${username}/channel`;
     } else {
       return CHANNEL;
     }
   },
-  saved: (id) => {
-    if (id) {
-      return `/${id}/saved`;
+  saved: (username) => {
+    if (username) {
+      return `/${username}/saved`;
     } else {
       return SAVED;
     }
   },
-  tagged: (id) => {
-    if (id) {
-      return `/${id}/tagged`;
+  tagged: (username) => {
+    if (username) {
+      return `/${username}/tagged`;
     } else {
       return TAGGED;
     }

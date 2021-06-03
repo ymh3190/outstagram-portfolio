@@ -6,8 +6,15 @@ import {
   googleLogin,
   kakaoLogin,
 } from "../controllers/accountsController";
-import { explore, home, post } from "../controllers/postController";
+import {
+  explore,
+  getCreatePost,
+  home,
+  post,
+  postCreatePost,
+} from "../controllers/postController";
 import { user } from "../controllers/userController";
+import { uploadFile, uploadImage, uploadVideo } from "../middlewares";
 import routes from "../routes";
 
 const rootRouter = express.Router();
@@ -50,6 +57,9 @@ rootRouter.get(
     res.redirect(routes.home);
   }
 );
+
+rootRouter.get(routes.createPost, getCreatePost);
+rootRouter.post(routes.createPost, uploadFile, postCreatePost);
 
 rootRouter.get(routes.post(), post);
 rootRouter.get(routes.user(), user);

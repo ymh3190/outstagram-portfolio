@@ -7,7 +7,7 @@ block content
                 img(src=`/static/59950687.png`, alt="Change Profile Photo")
         section 
             div
-                h2=user.username
+                h2=loggedUser.username
                 div
                     a(href=routes.edit) edit profile
                 div
@@ -19,11 +19,11 @@ block content
                         span 27
                         | posts
                 li 
-                    a(href=`${routes.user(user.id)}/followers`) 
+                    a(href=`${routes.user(loggedUser.username)}/followers`) 
                         span 27
                         | followers
                 li 
-                    a(href=`${routes.user(user.id)}/following`) 
+                    a(href=`${routes.user(loggedUser.username)}/following`) 
                         span 27
                         | following
             div
@@ -31,16 +31,16 @@ block content
                 br
                 span description
     div
-        a(href=routes.user(user.id))
+        a(href=routes.user(loggedUser.username))
             i.far.fa-list-alt
             span posts
-        a(href=routes.channel(user.id))
+        a(href=routes.channel(loggedUser.username))
             i.fas.fa-film
             span igtv
-        a(href=routes.saved(user.id))
+        a(href=routes.saved(loggedUser.username))
             i.far.fa-bookmark
             span saved
-        a(href=routes.tagged(user.id))
+        a(href=routes.tagged(loggedUser.username))
             i.fas.fa-portrait
             span tagged
     div

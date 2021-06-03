@@ -1,9 +1,13 @@
+import multer from "multer";
 import routes from "./routes";
 
-// eslint-disable-next-line import/prefer-default-export
+const multerFile = multer({ dest: "uploads/posts" });
+
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "Instagram";
   res.locals.routes = routes;
-  res.locals.user = req.user;
+  res.locals.loggedUser = req.user;
   next();
 };
+
+export const uploadFile = multerFile.single("postFile");
