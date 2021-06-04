@@ -1,0 +1,13 @@
+div
+    a(href=routes.user(loggedUser.username))
+        i.far.fa-list-alt
+        span posts
+    a(href=routes.channel)
+        i.fas.fa-film
+        span igtv
+    a(href=routes.saved(loggedUser.username))
+        i.far.fa-bookmark
+        span saved
+    a(href=routes.tagged(loggedUser.username))
+        i.fas.fa-portrait
+        span tagged

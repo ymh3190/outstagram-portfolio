@@ -7,17 +7,8 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
-
-/***/ "./src/client/js/createPost.js":
-/*!*************************************!*\
-  !*** ./src/client/js/createPost.js ***!
-  \*************************************/
-/***/ (() => {
-
-eval("// const createPostForm = document.getElementById(\"jsCreatePostForm\");\n// const titleInput = document.getElementById(\"jsTitleInput\");\n// const descTxt = document.getElementById(\"jsDescTxt\");\n// const postBtn = document.getElementById(\"jsPostBtn\");\n// const init = () => {\n//   console.log(\"test\");\n// };\n// if (createPostForm) {\n//   init();\n// }\n\n//# sourceURL=webpack://instagram-portfolio/./src/client/js/createPost.js?");
-
-/***/ }),
 
 /***/ "./src/client/js/main.js":
 /*!*******************************!*\
@@ -25,8 +16,7 @@ eval("// const createPostForm = document.getElementById(\"jsCreatePostForm\");\n
   \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/styles.scss */ \"./src/client/scss/styles.scss\");\n/* harmony import */ var _createPost__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createPost */ \"./src/client/js/createPost.js\");\n/* harmony import */ var _createPost__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_createPost__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\n//# sourceURL=webpack://instagram-portfolio/./src/client/js/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/styles.scss */ \"./src/client/scss/styles.scss\");\n\n\n//# sourceURL=webpack://instagram-portfolio/./src/client/js/main.js?");
 
 /***/ }),
 
@@ -36,7 +26,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scs
   \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://instagram-portfolio/./src/client/scss/styles.scss?");
 
 /***/ })
@@ -68,35 +57,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports

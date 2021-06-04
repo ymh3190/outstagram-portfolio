@@ -5,9 +5,9 @@ const LOGOUT = "/logout";
 
 // User
 const USER = "/:username";
-const CHANNEL = "channel";
-const SAVED = "saved";
-const TAGGED = "tagged";
+const CHANNEL = "/channel";
+const SAVED = "/saved";
+const TAGGED = "/tagged";
 
 // Create
 const CREATE_POST = "/create/post";
@@ -49,13 +49,14 @@ const routes = {
       return USER;
     }
   },
-  channel: (username) => {
-    if (username) {
-      return `/${username}/channel`;
-    } else {
-      return CHANNEL;
-    }
-  },
+  channel: CHANNEL,
+  // channel: (username) => {
+  //   if (username) {
+  //     return `/${username}/channel`;
+  //   } else {
+  //     return CHANNEL;
+  //   }
+  // },
   saved: (username) => {
     if (username) {
       return `/${username}/saved`;

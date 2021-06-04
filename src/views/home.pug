@@ -1,18 +1,19 @@
 extends layouts/main
+include mixins/articleBlock
 
 block content
-    article
-        if loggedUser
+    if loggedUser
+        //- article
             div.article-header
                 div 
                     div
                         canvas
-                        a(href=routes.home) 
+                        a(href=routes.user(posts[0].creator.username)) 
                             img(src="/static/59950687.png", alt="username" width="50" height="50")
                     div
                         div
                             span
-                                a(href="") username
+                                a(href=routes.user(posts[0].creator.username))=posts[0].creator.username
                         div
                             a(href="") location 
                 div
@@ -20,7 +21,7 @@ block content
                         i.fas.fa-ellipsis-h
             div.article-main
                 div
-                    img(src="/static/59950687.png", alt="post")
+                    img(src="", alt="post")
             div.article-footer
                 section
                     div
@@ -39,43 +40,60 @@ block content
                         |likes
                 div.comments
                     div.post-comment-root
-                        span username
-                        span ✔🌶
+                        span=posts[0].creator.username
+                        span=posts[0].caption
                     div.post-comment-root
-                        a(href="") View all
-                            span 53,212,122
-                            |comments
-                    div.post-comment-root
-                        div.comment
-                            span username
-                            span comment
-                        span.heart
+                        if posts[0].comments.length > 1
+                            a(href="") View all 
+                                span=posts[0].comments.length
+                                | comments
+                    if posts[0].comments.length > 0
+                        div.post-comment-root
+                            div.comment
+                                span=posts[0].comments[0].creator.username
+                                span=posts[0].comments[0].text
+                            span.heart
                 div.datetime
                     a(href="") 
-                        time 3 days ago
+                        if Math.floor((new Date - posts[0].createdAt)/1000) < 60
+                            time #{Math.floor((new Date - posts[0].createdAt)/1000)}s
+                        else if Math.floor(((new Date - posts[0].createdAt)/1000)/60) < 60
+                            time #{Math.floor(((new Date - posts[0].createdAt)/1000)/60)}m 
+                        else if Math.floor((((new Date - posts[0].createdAt)/1000)/60)/24) < 7
+                            if Math.floor((((new Date - posts[0].createdAt)/1000)/60)/24) == 1
+                                time #{Math.floor((((new Date - posts[0].createdAt)/1000)/60)/24)} day ago
+                            else
+                                time #{Math.floor((((new Date - posts[0].createdAt)/1000)/60)/24)} days ago
+                        else if Math.floor(((((new Date - posts[0].createdAt)/1000)/60)/24)/30) < 30
+                            if Math.floor(((((new Date - posts[0].createdAt)/1000)/60)/24)/30) == 1
+                                time #{Math.floor(((((new Date - posts[0].createdAt)/1000)/60)/24)/30)} week ago
+                            else
+                                time #{Math.floor(((((new Date - posts[0].createdAt)/1000)/60)/24)/30)} weeks ago
                 section
-                    form(method="post") 
+                    form(method="post")
                         button
                             i.far.fa-smile
                         textarea(name="", placeholder="Add a comment...")
                         button(type="submit") Post
             //- 사이드바
             div
-        else
+        each post in posts.reverse()
+            +articleBlock(post)
+    else
+        div
+            div
+                img(src="/static/59950687.png", alt="")
             div
                 div
-                    img(src="/static/59950687.png", alt="")
+                    h1 Instagram
+                    form(action=`/accounts`+routes.login, method="post")
+                        input(type="text" name="username" placeholder="Email")
+                        input(type="password", name="password" placeholder="Password")
+                        button(type="submit") Log In
+                        include ./partials/socialLogin
                 div
-                    div
-                        h1 Instagram
-                        form(action=`/accounts`+routes.login, method="post")
-                            input(type="text" name="username" placeholder="Email")
-                            input(type="password", name="password" placeholder="Password")
-                            button(type="submit") Log In
-                            include ./partials/socialLogin
-                    div
-                        p Don't have an account? 
-                        a(href=`/accounts`+routes.emailSignup)
-                            span Sign up
+                    p Don't have an account? 
+                    a(href=`/accounts`+routes.emailSignup)
+                        span Sign up
 
                     

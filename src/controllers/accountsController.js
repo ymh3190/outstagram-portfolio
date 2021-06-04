@@ -82,6 +82,7 @@ export const postFacebookLogin = async (_, __, profile, cb) => {
       const newUser = await User.create({
         email,
         name,
+        username: email.split("@")[0],
         facebookId: id,
         profilePhoto: pictureUrl,
       });
@@ -111,6 +112,7 @@ export const postKakaoLogin = async (_, __, profile, cb) => {
       const newUser = await User.create({
         email,
         name: nickname,
+        username: email.split("@")[0],
         kakaoId: id,
         profilePhoto: profileImage,
       });
@@ -140,7 +142,8 @@ export const postGoogleLogin = async (_, __, profile, cb) => {
     } else {
       const newUser = await User.create({
         email,
-        username: name,
+        name,
+        username: email.split("@")[0],
         googleId: sub,
         profilePhoto: picture,
       });

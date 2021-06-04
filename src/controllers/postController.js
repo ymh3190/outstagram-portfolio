@@ -1,8 +1,15 @@
+import Post from "../models/Post";
 import User from "../models/User";
 import routes from "../routes";
 
 export const home = async (req, res) => {
-  return res.render("home");
+  const {
+    user: { id },
+  } = req;
+  const posts = await Post.find({ creator: id })
+    .populate("creator")
+    .populate("comments");
+  return res.render("home", { posts });
 };
 
 export const explore = (_, res) => {
@@ -11,10 +18,30 @@ export const explore = (_, res) => {
 
 export const getCreatePost = (_, res) => res.render("createPost");
 export const postCreatePost = async (req, res) => {
-  console.log(req);
-  res.redirect(routes.createPost);
+  const {
+    body: { title, caption },
+    user: { _id, username },
+    file,
+  } = req;
+  try {
+    const user = await User.findById(_id);
+    if (user && file) {
+      await Post.create({
+        url: file.path,
+        title,
+        caption,
+        creator: user,
+      });
+      return res.redirect(routes.user(username));
+    } else {
+      throw Error;
+    }
+  } catch (error) {
+    console.log(error);
+    return res.redirect(routes.createPost);
+  }
 };
 
 export const post = (req, res) => {
-  res.send("post");
+  return res.send("post");
 };

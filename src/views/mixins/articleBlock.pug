@@ -1,0 +1,73 @@
+mixin articleBlock(post)
+    article
+        div.article-header
+            div 
+                div
+                    canvas
+                    a(href=routes.user(post.creator.username)) 
+                        img(src="/static/59950687.png", alt="username" width="50" height="50")
+                div
+                    div
+                        span
+                            a(href=routes.user(post.creator.username))=post.creator.username
+                    div
+                        a(href="") location 
+            div
+                button
+                    i.fas.fa-ellipsis-h
+        div.article-main
+            div
+                img(src=post.url, alt="post")
+        div.article-footer
+            section
+                div
+                    span
+                        i.far.fa-heart
+                    span
+                        i.far.fa-comment
+                    span
+                        i.far.fa-map
+                div 
+                    span
+                        i.far.fa-bookmark
+            section
+                a(href="")
+                    span 123,456,789
+                    |likes
+            div.comments
+                div.post-comment-root
+                    span=post.creator.username
+                    span=post.caption
+                div.post-comment-root
+                    if post.comments.length > 1
+                        a(href="") View all 
+                            span=post.comments.length
+                            | comments
+                if post.comments.length > 0
+                    div.post-comment-root
+                        div.comment
+                            span=post.comments[0].creator.username
+                            span=post.comments[0].text
+                        span.heart
+            div.datetime
+                a(href="") 
+                    if Math.floor((new Date - post.createdAt)/1000) < 60
+                        time #{Math.floor((new Date - post.createdAt)/1000)}s
+                    else if Math.floor(((new Date - post.createdAt)/1000)/60) < 60
+                        time #{Math.floor(((new Date - post.createdAt)/1000)/60)}m 
+                    else if Math.floor((((new Date - post.createdAt)/1000)/60)/24) < 7
+                        if Math.floor((((new Date - post.createdAt)/1000)/60)/24) == 1
+                            time #{Math.floor((((new Date - post.createdAt)/1000)/60)/24)} day ago
+                        else
+                            time #{Math.floor((((new Date - post.createdAt)/1000)/60)/24)} days ago
+                    else if Math.floor(((((new Date - post.createdAt)/1000)/60)/24)/30) < 30
+                        if Math.floor(((((new Date - post.createdAt)/1000)/60)/24)/30) == 1
+                            time #{Math.floor(((((new Date - post.createdAt)/1000)/60)/24)/30)} week ago
+                        else
+                            time #{Math.floor(((((new Date - post.createdAt)/1000)/60)/24)/30)} weeks ago
+            section
+                form(method="post")
+                    button
+                        i.far.fa-smile
+                    textarea(name="", placeholder="Add a comment...")
+                    button(type="submit") Post
