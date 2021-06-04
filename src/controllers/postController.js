@@ -3,13 +3,14 @@ import User from "../models/User";
 import routes from "../routes";
 
 export const home = async (req, res) => {
-  const {
-    user: { id },
-  } = req;
-  const posts = await Post.find({ creator: id })
-    .populate("creator")
-    .populate("comments");
-  return res.render("home", { posts });
+  if (req.user) {
+    const posts = await Post.find({ creator: req.user.id })
+      .populate("creator")
+      .populate("comments");
+    return res.render("home", { posts });
+  } else {
+    return res.render("home");
+  }
 };
 
 export const explore = (_, res) => {

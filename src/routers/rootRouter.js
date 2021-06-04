@@ -14,7 +14,7 @@ import {
   postCreatePost,
 } from "../controllers/postController";
 import { user } from "../controllers/userController";
-import { uploadFile, uploadImage, uploadVideo } from "../middlewares";
+import { uploadFile } from "../middlewares";
 import routes from "../routes";
 
 const rootRouter = express.Router();

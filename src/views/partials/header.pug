@@ -13,9 +13,8 @@ header
                     div 
         div
             div
-                if loggedUser
-                    a(href=routes.createPost)
-                        i.far.fa-plus-square
+                a(href=routes.createPost)
+                    i.far.fa-plus-square
                 a(href=routes.home)
                     i.fas.fa-home
                 a(href="")
@@ -24,6 +23,6 @@ header
                     i.far.fa-compass
                 a(href="") 
                     i.far.fa-heart
-                if loggedUser
-                    a(href=routes.user(loggedUser.username))
-                        i.far.fa-user-circle
+                a(href=routes.user(loggedUser.username))
+                    i.far.fa-user-circle
+                a(href="/accounts"+routes.logout) logout

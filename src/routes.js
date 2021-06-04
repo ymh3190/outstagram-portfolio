@@ -1,7 +1,6 @@
 // Root
 const HOME = "/";
 const EXPLORE = "/explore";
-const LOGOUT = "/logout";
 
 // User
 const USER = "/:username";
@@ -16,6 +15,7 @@ const CREATE_POST = "/create/post";
 const ACCOUNTS = "/accounts";
 const EMAILSIGNUP = "/emailsignup";
 const LOGIN = "/login";
+const LOGOUT = "/logout";
 const EDIT = "/edit";
 
 // Post

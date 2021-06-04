@@ -32,6 +32,12 @@ export const postLogin = passport.authenticate("local", {
   successRedirect: routes.home,
 });
 
+export const logout = (req, res) => {
+  req.logout();
+  console.log("asdf");
+  res.redirect(routes.home);
+};
+
 export const githubLogin = passport.authenticate("github");
 export const postGithubLogin = async (_, __, profile, cb) => {
   const {
