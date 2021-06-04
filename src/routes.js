@@ -3,13 +3,14 @@ const HOME = "/";
 const EXPLORE = "/explore";
 
 // User
-const USER = "/:username";
+const USER = "/:id";
 const CHANNEL = "/channel";
 const SAVED = "/saved";
 const TAGGED = "/tagged";
 
 // Create
-const CREATE_POST = "/create/post";
+const CREATE = "/create";
+const CREATE_POST = "/post";
 
 // Accounts
 const ACCOUNTS = "/accounts";
@@ -19,8 +20,9 @@ const LOGOUT = "/logout";
 const EDIT = "/edit";
 
 // Post
-const POST = "/post/:id";
-const EDIT_POST = "/post/:id/edit";
+const POSTS = "/posts/:id";
+const LIKE_BY = "/like_by";
+const EDIT_POST = "/edit";
 
 // Github
 const GITHUB = "/auth/github";
@@ -42,47 +44,30 @@ const routes = {
   home: HOME,
   explore: EXPLORE,
   logout: LOGOUT,
-  user: (username) => {
-    if (username) {
-      return `/${username}`;
+  user: (id) => {
+    if (id) {
+      return `/${id}`;
     } else {
       return USER;
     }
   },
   channel: CHANNEL,
-  // channel: (username) => {
-  //   if (username) {
-  //     return `/${username}/channel`;
-  //   } else {
-  //     return CHANNEL;
-  //   }
-  // },
-  saved: (username) => {
-    if (username) {
-      return `/${username}/saved`;
-    } else {
-      return SAVED;
-    }
-  },
-  tagged: (username) => {
-    if (username) {
-      return `/${username}/tagged`;
-    } else {
-      return TAGGED;
-    }
-  },
+  saved: SAVED,
+  tagged: TAGGED,
+  create: CREATE,
   createPost: CREATE_POST,
   accounts: ACCOUNTS,
   emailSignup: EMAILSIGNUP,
   login: LOGIN,
   edit: EDIT,
-  post: (id) => {
+  posts: (id) => {
     if (id) {
-      return `/post/${id}`;
+      return `/posts/${id}`;
     } else {
-      return POST;
+      return POSTS;
     }
   },
+  likeBy: LIKE_BY,
   editPost: EDIT_POST,
   github: GITHUB,
   githubCallback: GITHUB_CALLBACK,

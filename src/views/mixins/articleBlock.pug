@@ -5,7 +5,7 @@ mixin articleBlock(post)
                 div
                     canvas
                     a(href=routes.user(post.creator.username)) 
-                        img(src="/static/59950687.png", alt="username" width="50" height="50")
+                        img(src="", alt="profile photo" width="50" height="50")
                 div
                     div
                         span
@@ -17,7 +17,10 @@ mixin articleBlock(post)
                     i.fas.fa-ellipsis-h
         div.article-main
             div
-                img(src=post.url, alt="post")
+                if post.type == "image"
+                    img(src=post.url, alt="post")
+                else if post.type == "video"
+                    video(src=post.url, alt="post")
         div.article-footer
             section
                 div
@@ -31,12 +34,12 @@ mixin articleBlock(post)
                     span
                         i.far.fa-bookmark
             section
-                a(href="")
+                a(href=routes.likeBy)
                     span 123,456,789
-                    |likes
+                    | likes
             div.comments
                 div.post-comment-root
-                    span=post.creator.username
+                    h2=post.creator.username
                     span=post.caption
                 div.post-comment-root
                     if post.comments.length > 1
@@ -55,16 +58,16 @@ mixin articleBlock(post)
                         time #{Math.floor((new Date - post.createdAt)/1000)}s
                     else if Math.floor(((new Date - post.createdAt)/1000)/60) < 60
                         time #{Math.floor(((new Date - post.createdAt)/1000)/60)}m 
-                    else if Math.floor((((new Date - post.createdAt)/1000)/60)/24) < 7
+                    else if Math.floor((((new Date - post.createdAt)/1000)/60)/24) < 24
                         if Math.floor((((new Date - post.createdAt)/1000)/60)/24) == 1
-                            time #{Math.floor((((new Date - post.createdAt)/1000)/60)/24)} day ago
+                            time #{Math.floor((((new Date - post.createdAt)/1000)/60)/24)} hour ago
                         else
-                            time #{Math.floor((((new Date - post.createdAt)/1000)/60)/24)} days ago
-                    else if Math.floor(((((new Date - post.createdAt)/1000)/60)/24)/30) < 30
-                        if Math.floor(((((new Date - post.createdAt)/1000)/60)/24)/30) == 1
-                            time #{Math.floor(((((new Date - post.createdAt)/1000)/60)/24)/30)} week ago
+                            time #{Math.floor((((new Date - post.createdAt)/1000)/60)/24)} hours ago
+                    else if Math.floor(((((new Date - post.createdAt)/1000)/60)/24)/7) < 7
+                        if Math.floor(((((new Date - post.createdAt)/1000)/60)/24)/7) == 1
+                            time #{Math.floor(((((new Date - post.createdAt)/1000)/60)/24)/7)} day ago
                         else
-                            time #{Math.floor(((((new Date - post.createdAt)/1000)/60)/24)/30)} weeks ago
+                            time #{Math.floor(((((new Date - post.createdAt)/1000)/60)/24)/7)} days ago
             section
                 form(method="post")
                     button

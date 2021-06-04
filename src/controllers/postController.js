@@ -19,21 +19,23 @@ export const explore = (_, res) => {
 
 export const getCreatePost = (_, res) => res.render("createPost");
 export const postCreatePost = async (req, res) => {
+  console.log(req.user);
   const {
     body: { title, caption },
-    user: { _id, username },
+    user: { id },
     file,
   } = req;
   try {
-    const user = await User.findById(_id);
+    const user = await User.findById(id);
     if (user && file) {
       await Post.create({
         url: file.path,
+        type: file.mimetype.split("/")[0],
         title,
         caption,
         creator: user,
       });
-      return res.redirect(routes.user(username));
+      return res.redirect(routes.home);
     } else {
       throw Error;
     }
@@ -43,6 +45,10 @@ export const postCreatePost = async (req, res) => {
   }
 };
 
-export const post = (req, res) => {
-  return res.send("post");
+export const posts = (req, res) => {
+  return res.send("posts");
+};
+
+export const getLikeBy = (_, res) => {
+  return res.send("likeBy");
 };

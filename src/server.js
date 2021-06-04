@@ -10,7 +10,9 @@ import { localsMiddleware } from "./middlewares";
 import routes from "./routes";
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
+import createRouter from "./routers/createRouter";
 import accountsRouter from "./routers/accountsRouter";
+import postRouter from "./routers/postRouter";
 
 import "./passport";
 
@@ -38,7 +40,9 @@ app.use(passport.session());
 app.use(localsMiddleware);
 
 app.use(routes.home, rootRouter);
+app.use(routes.create, createRouter);
 app.use(routes.accounts, accountsRouter);
+app.use(routes.posts(), postRouter);
 app.use(routes.user(), userRouter);
 
 export default app;
