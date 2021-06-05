@@ -34,7 +34,6 @@ export const postLogin = passport.authenticate("local", {
 
 export const logout = (req, res) => {
   req.logout();
-  console.log("asdf");
   res.redirect(routes.home);
 };
 
@@ -158,4 +157,8 @@ export const postGoogleLogin = async (_, __, profile, cb) => {
   } catch (error) {
     return cb(error);
   }
+};
+
+export const getEditProfile = (_, res) => {
+  res.render("editProfile");
 };

@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  getEditProfile,
   getEmailSignup,
   getLogin,
   logout,
@@ -14,6 +15,7 @@ rootRouter.get(routes.emailSignup, getEmailSignup);
 rootRouter.post(routes.emailSignup, postEmailSignup, postLogin);
 rootRouter.get(routes.login, getLogin);
 rootRouter.post(routes.login, postLogin);
+rootRouter.get(routes.editProfile, getEditProfile);
 rootRouter.get(routes.logout, logout);
 
 export default rootRouter;

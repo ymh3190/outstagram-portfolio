@@ -42,6 +42,7 @@ app.use(localsMiddleware);
 app.use(routes.home, rootRouter);
 app.use(routes.create, createRouter);
 app.use(routes.accounts, accountsRouter);
+app.use(routes.create, createRouter);
 app.use(routes.posts(), postRouter);
 app.use(routes.user(), userRouter);
 

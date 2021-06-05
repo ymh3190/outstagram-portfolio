@@ -35,6 +35,7 @@
       models
       User
       Post
+      Comment
 
 - [x] OAuth
 
@@ -43,3 +44,15 @@
       facebook
       kakao
       google
+
+- [x] post
+- [] eddit user's profile
+- [] save the post
+- [] VideoController
+- [] follower
+- [] following
+- [] comment
+- [] like
+- [] explore
+- [] socketio
+- [] update post when scrolling

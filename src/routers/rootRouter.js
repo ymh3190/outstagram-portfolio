@@ -6,14 +6,14 @@ import {
   googleLogin,
   kakaoLogin,
 } from "../controllers/accountsController";
-import { explore, home, posts } from "../controllers/postController";
+import { getExplore, home, posts } from "../controllers/postController";
 import { user } from "../controllers/userController";
 import routes from "../routes";
 
 const rootRouter = express.Router();
 
 rootRouter.get(routes.home, home);
-rootRouter.get(routes.explore, explore);
+rootRouter.get(routes.explore, getExplore);
 
 rootRouter.get(routes.github, githubLogin);
 rootRouter.get(

@@ -1,23 +1,20 @@
 extends layouts/main
 
 block content
-    div
-        div
-            a(href="")
-                img(src="", alt="post") 
-        div
-            a(href="")
-                img(src="", alt="post") 
-        div
-            a(href="")
-                img(src="", alt="post") 
+    div(style="display: grid; grid-template-columns: repeat(3, 1fr);")
+        //- 스크롤 업데이트 전까지 보여질 것들
+        //- post 정렬을 어떻게할까?
+        //- 1. 좋아요 수 2. 코멘트 수 3. 좋아요 코멘트 합친거 4. 팔로워 수
+        //- 5. 그냥 랜덤 6. 최신순
+        each post in posts.reverse()
+            div
+                a(href=routes.posts(post.id))
+                    if post.type == "image"
+                        img(src=post.url, alt="post" style="width:400px; height:400px; object-fit: fill;")
+                    else if post.type == "video"
+                        video(src=post.url, alt="post" style="width:400px; height:400px; object-fit: fill;" controls)
     div 
+        //- 스크롤 업데이트시 추가로 보여줄 것 위의 div에 추가되는 일련의 과정
         div
             a(href="")
-                img(src="", alt="post") 
-        div
-            a(href="")
-                img(src="", alt="post") 
-        div
-            a(href="")
-                img(src="", alt="post") 
+                img(src="", alt="post")

@@ -5,7 +5,7 @@ mixin articleBlock(post)
                 div
                     canvas
                     a(href=routes.user(post.creator.username)) 
-                        img(src="", alt="profile photo" width="50" height="50")
+                        img(src="../../static/59950687.png", alt="profile photo" width="50" height="50")
                 div
                     div
                         span
@@ -18,9 +18,9 @@ mixin articleBlock(post)
         div.article-main
             div
                 if post.type == "image"
-                    img(src=post.url, alt="post")
+                    img(src=post.url, alt="post" style="width:400px; height:400px; object-fit: fill;")
                 else if post.type == "video"
-                    video(src=post.url, alt="post")
+                    video(src=post.url, alt="post" style="width:400px; height:400px; object-fit: fill;" controls)
         div.article-footer
             section
                 div
@@ -53,21 +53,32 @@ mixin articleBlock(post)
                             span=post.comments[0].text
                         span.heart
             div.datetime
-                a(href="") 
-                    if Math.floor((new Date - post.createdAt)/1000) < 60
-                        time #{Math.floor((new Date - post.createdAt)/1000)}s
-                    else if Math.floor(((new Date - post.createdAt)/1000)/60) < 60
-                        time #{Math.floor(((new Date - post.createdAt)/1000)/60)}m 
-                    else if Math.floor((((new Date - post.createdAt)/1000)/60)/24) < 24
-                        if Math.floor((((new Date - post.createdAt)/1000)/60)/24) == 1
-                            time #{Math.floor((((new Date - post.createdAt)/1000)/60)/24)} hour ago
+                -
+                    const seconds = Math.floor((new Date - post.createdAt)/1000)
+                    const minutes = Math.floor(seconds/60) 
+                    const hours = Math.floor(minutes/60)
+                    const days = Math.floor(hours/24)
+                a(href="")
+                    if seconds < 60
+                        if seconds == 1
+                            time #{seconds} second ago
                         else
-                            time #{Math.floor((((new Date - post.createdAt)/1000)/60)/24)} hours ago
-                    else if Math.floor(((((new Date - post.createdAt)/1000)/60)/24)/7) < 7
-                        if Math.floor(((((new Date - post.createdAt)/1000)/60)/24)/7) == 1
-                            time #{Math.floor(((((new Date - post.createdAt)/1000)/60)/24)/7)} day ago
+                            time #{seconds} seconds ago
+                    else if minutes < 60
+                        if minutes == 1
+                            time #{minutes} minute ago
                         else
-                            time #{Math.floor(((((new Date - post.createdAt)/1000)/60)/24)/7)} days ago
+                            time #{minutes} minutes ago
+                    else if hours < 24
+                        if hours == 1
+                            time #{hours} hour ago
+                        else 
+                            time #{hours} hours ago
+                    else if days < 7
+                        if days == 1
+                            time #{days} day ago
+                        else 
+                            time #{days} days ago
             section
                 form(method="post")
                     button

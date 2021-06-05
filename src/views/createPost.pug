@@ -2,7 +2,7 @@ extends layouts/main
 
 block content
     div
-        form#jsCreatePostForm(action=routes.createPost, method="post" enctype="multipart/form-data")
+        form#jsCreatePostForm(action="/create"+routes.createPost, method="post" enctype="multipart/form-data")
             div
                 input(type="file", name="postFile" accept="image/*, video/*")
             div

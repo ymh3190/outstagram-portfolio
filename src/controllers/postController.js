@@ -13,13 +13,13 @@ export const home = async (req, res) => {
   }
 };
 
-export const explore = (_, res) => {
-  return res.render("explore");
+export const getExplore = async (_, res) => {
+  const posts = await Post.find({});
+  return res.render("explore", { posts });
 };
 
 export const getCreatePost = (_, res) => res.render("createPost");
 export const postCreatePost = async (req, res) => {
-  console.log(req.user);
   const {
     body: { title, caption },
     user: { id },
@@ -41,7 +41,7 @@ export const postCreatePost = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    return res.redirect(routes.createPost);
+    return res.redirect(`/create${routes.createPost}`);
   }
 };
 

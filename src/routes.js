@@ -17,7 +17,7 @@ const ACCOUNTS = "/accounts";
 const EMAILSIGNUP = "/emailsignup";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
-const EDIT = "/edit";
+const EDIT_PROFILE = "/edit";
 
 // Post
 const POSTS = "/posts/:id";
@@ -59,7 +59,7 @@ const routes = {
   accounts: ACCOUNTS,
   emailSignup: EMAILSIGNUP,
   login: LOGIN,
-  edit: EDIT,
+  editProfile: EDIT_PROFILE,
   posts: (id) => {
     if (id) {
       return `/posts/${id}`;

@@ -1,0 +1,85 @@
+extends layouts/main
+
+block content
+    ul
+        li
+            a(href="/accounts"+routes.editProfile) Edit Profile 
+        li
+            a(href="") 
+    article
+        div
+            div
+                button
+                    img(src=`${loggedUser.profilePhoto}`, alt="Change Profile Photo")
+                div
+                    form(action="", method="post" enctype="multipart/form-data")
+                        input(type="file", name="imageFile" accept="iamge/*")
+            div 
+                h1 username
+                button(type="button")
+                div
+                    form(action="", method="post" enctype="multipart/form-data")
+                        input(type="file", name="imageFile" accept="iamge/*")
+        form(action="", method="post")
+            div
+                aside
+                    label Name
+                div
+                    div(sylte="width: 100%; max-width: 355px;")
+                        input(type="text" placeholder="Name" value=`${loggedUser.name}`)
+                    div(sylte="width: 100%; max-width: 355px;")
+                        div Help people discover your account by using the name you're known by: either your full name, nickname, or business name.
+                        div You can only change your name twice within 14 days.
+            div
+                aside
+                    label Username
+                div
+                    div(sylte="width: 100%; max-width: 355px;")
+                        input(type="text" placeholder="Username" value=`${loggedUser.username}`)
+                    div(sylte="width: 100%; max-width: 355px;")
+                        div In most cases, you'll be able to change your username back to ymh3190 for another 14 days.
+            div
+                aside
+                    label Website
+                div
+                    div(sylte="width: 100%; max-width: 355px;")
+                        input(type="text" placeholder="Website" value="")
+            div
+                aside
+                    label Bio
+                div
+                    textarea 요리 풍경 운동 구절
+            div
+                aside
+                    label
+                div
+                    div(sylte="width: 100%; max-width: 355px;")
+                        div
+                            h2 Personal Information
+                        div Provide your personal information, even if the account is used for a business, a pet or something else. This won't be a part of your public profile.
+            div
+                aside
+                    label Email
+                div
+                    div(sylte="width: 100%; max-width: 355px;")
+                        input(type="text" placeholder="Email" value=`${loggedUser.email}`)
+            div
+                aside
+                    label Phone Number
+                div
+                    div(sylte="width: 100%; max-width: 355px;")
+                        input(type="text" placeholder="Phone Number" value=`${loggedUser.phoneNumber}`)
+            div
+                aside
+                    label Gender
+                div
+                    div(sylte="width: 100%; max-width: 355px;")
+                        button(type="button")
+                            input(type="text" value="")
+            div
+                aside
+                    label
+                div
+                    div(sylte="width: 100%; max-width: 355px;")
+                        button(type="button") Submit
+                        
