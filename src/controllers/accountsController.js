@@ -165,18 +165,37 @@ export const getEditProfile = (_, res) => {
 export const postEditProfile = async (req, res) => {
   const {
     user: { id },
+    body,
     file,
   } = req;
   try {
     const user = await User.findById(id);
     if (user && file) {
       await user.updateOne({ profilePhoto: `/${file.path}` });
-      return res.redirect(`/accounts/${routes.editProfile}`);
+      return res.redirect(`/accounts${routes.editProfile}`);
+    } else if (user && body) {
+      await user.updateOne({
+        name: body.name,
+        username: body.username,
+        website: body.website,
+        bio: body.bio,
+        email: body.email,
+        phoneNumber: body.phoneNumber,
+        gender: body.gender,
+      });
+      // await user.updateOne({ name: body.name });
+      // await user.updateOne({ username: body.username });
+      // await user.updateOne({ website: body.website });
+      // await user.updateOne({ textarea: body.textarea });
+      // await user.updateOne({ email: body.email });
+      // await user.updateOne({ phoneNumber: body.phoneNumber });
+      // await user.updateOne({ gender: body.gender });
+      return res.redirect(`/accounts${routes.editProfile}`);
     } else {
       throw Error;
     }
   } catch (error) {
     console.log(error);
-    return res.redirect(`/accounts/${routes.editProfile}`);
+    return res.redirect(`/accounts${routes.editProfile}`);
   }
 };

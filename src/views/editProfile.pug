@@ -9,40 +9,46 @@ block content
     article
         div
             div
-                button#btn
+                button#btn1
                     img(src=`${loggedUser.profilePhoto}`, alt="Change Profile Photo" width="50" height="50")
-                div
-                    form#form(action="/accounts"+routes.editProfile, method="post" enctype="multipart/form-data")
+                div(style="display: none;")
+                    form#form1(method="post" enctype="multipart/form-data")
                         input(type="file", name="profilePhotoFile" accept="image/*")
                 script.
-                    const btn = document.getElementById("btn");
-                    const input = document.querySelector("#form input");
+                    const btn = document.getElementById("btn1");
+                    const input = document.querySelector("#form1 input");
                     const handleClick = (event) => {
-                        event.preventDefault();
+                        event.stopPropagation();
                         input.click();
-                        input.addEventListener("change", async () => {
-                            //- const formData = new FormData(document.getElementById("form"));
-                            document.getElementById("form").submit(),
-                            await fetch("/accounts/edit", {
-                                method:"POST",
-                                //- body: JSON.stringify(formData)
-                            })
+                        input.addEventListener("change", () => document.getElementById("form1").submit(), () => {
+                            fetch("/accounts/edit", { method: "POST" })
                         })
                     }
                     btn.addEventListener("click", handleClick);
             div 
                 h1 username
-                button(type="button")
-                div
-                    form(action="/accounts"+routes.editProfile, method="post" enctype="multipart/form-data")
+                button#btn2(type="button") Change Profile Photo
+                div(style="display: none;")
+                    form#form2(method="post" enctype="multipart/form-data")
                         input(type="file", name="profilePhotoFile" accept="iamge/*")
-        form(action="", method="post")
+                script.
+                    const btn2 = document.getElementById("btn2");
+                    const input2 = document.querySelector("#form2 input");
+                    const handleClick2 = (event) => {
+                        event.stopPropagation();
+                        input2.click();
+                        input2.addEventListener("change", () => document.getElementById("form2").submit(), () => {
+                            fetch("/accounts/edit", { method: "POST" })
+                        })
+                    }
+                    btn2.addEventListener("click", handleClick2);
+        form#form3(method="post")
             div
                 aside
                     label Name
                 div
                     div(sylte="width: 100%; max-width: 355px;")
-                        input(type="text" placeholder="Name" value=`${loggedUser.name}`)
+                        input#name(type="text" placeholder="Name" value=`${loggedUser.name}`)
                     div(sylte="width: 100%; max-width: 355px;")
                         div Help people discover your account by using the name you're known by: either your full name, nickname, or business name.
                         div You can only change your name twice within 14 days.
@@ -51,7 +57,7 @@ block content
                     label Username
                 div
                     div(sylte="width: 100%; max-width: 355px;")
-                        input(type="text" placeholder="Username" value=`${loggedUser.username}`)
+                        input#username(type="text" placeholder="Username" value=`${loggedUser.username}`)
                     div(sylte="width: 100%; max-width: 355px;")
                         div In most cases, you'll be able to change your username back to ymh3190 for another 14 days.
             div
@@ -59,12 +65,12 @@ block content
                     label Website
                 div
                     div(sylte="width: 100%; max-width: 355px;")
-                        input(type="text" placeholder="Website" value="")
+                        input#website(type="text" placeholder="Website" value=`${loggedUser.website}`)
             div
                 aside
                     label Bio
                 div
-                    textarea 요리 풍경 운동 구절
+                    textarea#bio=loggedUser.bio
             div
                 aside
                     label
@@ -78,24 +84,52 @@ block content
                     label Email
                 div
                     div(sylte="width: 100%; max-width: 355px;")
-                        input(type="text" placeholder="Email" value=`${loggedUser.email}`)
+                        input#email(type="text" placeholder="Email" value=`${loggedUser.email}`)
             div
                 aside
                     label Phone Number
                 div
                     div(sylte="width: 100%; max-width: 355px;")
-                        input(type="text" placeholder="Phone Number" value=`${loggedUser.phoneNumber}`)
+                        input#phoneNumber(type="text" placeholder="Phone Number" value=`${loggedUser.phoneNumber}`)
             div
                 aside
                     label Gender
                 div
                     div(sylte="width: 100%; max-width: 355px;")
                         button(type="button")
-                            input(type="text" value="")
+                            input#gender(type="text" value=`${loggedUser.gender}`)
             div
                 aside
                     label
                 div
                     div(sylte="width: 100%; max-width: 355px;")
-                        button(type="button") Submit
-                        
+                        button#submit(type="button") Submit
+    script.
+        const name = document.getElementById("name");
+        const username = document.getElementById("username");
+        const website = document.getElementById("website");
+        const bio = document.getElementById("bio");
+        const email = document.getElementById("email");
+        const phoneNumber = document.getElementById("phoneNumber");
+        const gender = document.getElementById("gender");
+        const submit = document.getElementById("submit");
+        const form3 = document.getElementById("form3");
+
+        const handleClick3 = (event) => {
+            fetch("/accounts/edit", { 
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name:name.value,
+                    username:username.value,
+                    website:website.value,
+                    bio:bio.value,
+                    email:email.value,
+                    phoneNumber:phoneNumber.value,
+                    gender:gender.value
+                })
+            });
+        }
+        submit.addEventListener("click", handleClick3);

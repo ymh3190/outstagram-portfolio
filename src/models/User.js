@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
   kakaoId: Number,
   googleId: Number,
   profilePhoto: String,
-  webSite: String,
+  website: String,
   bio: String,
   phoneNumber: String,
   gender: String,
