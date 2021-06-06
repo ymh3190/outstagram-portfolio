@@ -17,7 +17,7 @@ export const postEmailSignup = async (req, res, next) => {
       username,
     });
     await User.register(newUser, password);
-    next();
+    return next();
   } catch (error) {
     console.log(error);
     return res.redirect(`/accounts${routes.emailSignup}`);
@@ -161,4 +161,22 @@ export const postGoogleLogin = async (_, __, profile, cb) => {
 
 export const getEditProfile = (_, res) => {
   res.render("editProfile");
+};
+export const postEditProfile = async (req, res) => {
+  const {
+    user: { id },
+    file,
+  } = req;
+  try {
+    const user = await User.findById(id);
+    if (user && file) {
+      await user.updateOne({ profilePhoto: `/${file.path}` });
+      return res.redirect(`/accounts/${routes.editProfile}`);
+    } else {
+      throw Error;
+    }
+  } catch (error) {
+    console.log(error);
+    return res.redirect(`/accounts/${routes.editProfile}`);
+  }
 };

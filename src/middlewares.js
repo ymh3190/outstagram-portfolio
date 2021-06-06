@@ -1,7 +1,8 @@
 import multer from "multer";
 import routes from "./routes";
 
-const multerFile = multer({ dest: "uploads/posts" });
+const multerPost = multer({ dest: "uploads/posts" });
+const multerProfilePhoto = multer({ dest: "uploads/profilePhoto" });
 
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "Outstagram";
@@ -10,4 +11,5 @@ export const localsMiddleware = (req, res, next) => {
   next();
 };
 
-export const uploadFile = multerFile.single("postFile");
+export const uploadPost = multerPost.single("postFile");
+export const uploadProfilePhoto = multerProfilePhoto.single("profilePhotoFile");

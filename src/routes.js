@@ -18,6 +18,7 @@ const EMAILSIGNUP = "/emailsignup";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
 const EDIT_PROFILE = "/edit";
+const CHANGE_PASSWORD = "/password/change";
 
 // Post
 const POSTS = "/posts/:id";
@@ -60,6 +61,7 @@ const routes = {
   emailSignup: EMAILSIGNUP,
   login: LOGIN,
   editProfile: EDIT_PROFILE,
+  changePassword: CHANGE_PASSWORD,
   posts: (id) => {
     if (id) {
       return `/posts/${id}`;

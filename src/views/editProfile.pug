@@ -5,21 +5,37 @@ block content
         li
             a(href="/accounts"+routes.editProfile) Edit Profile 
         li
-            a(href="") 
+            a(href="/accounts"+routes.changePassword) Change Password
     article
         div
             div
-                button
-                    img(src=`${loggedUser.profilePhoto}`, alt="Change Profile Photo")
+                button#btn
+                    img(src=`${loggedUser.profilePhoto}`, alt="Change Profile Photo" width="50" height="50")
                 div
-                    form(action="", method="post" enctype="multipart/form-data")
-                        input(type="file", name="imageFile" accept="iamge/*")
+                    form#form(action="/accounts"+routes.editProfile, method="post" enctype="multipart/form-data")
+                        input(type="file", name="profilePhotoFile" accept="image/*")
+                script.
+                    const btn = document.getElementById("btn");
+                    const input = document.querySelector("#form input");
+                    const handleClick = (event) => {
+                        event.preventDefault();
+                        input.click();
+                        input.addEventListener("change", async () => {
+                            //- const formData = new FormData(document.getElementById("form"));
+                            document.getElementById("form").submit(),
+                            await fetch("/accounts/edit", {
+                                method:"POST",
+                                //- body: JSON.stringify(formData)
+                            })
+                        })
+                    }
+                    btn.addEventListener("click", handleClick);
             div 
                 h1 username
                 button(type="button")
                 div
-                    form(action="", method="post" enctype="multipart/form-data")
-                        input(type="file", name="imageFile" accept="iamge/*")
+                    form(action="/accounts"+routes.editProfile, method="post" enctype="multipart/form-data")
+                        input(type="file", name="profilePhotoFile" accept="iamge/*")
         form(action="", method="post")
             div
                 aside

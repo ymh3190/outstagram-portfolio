@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ymh3190/instagram-portfolio.git"
+    "url": "git+https://github.com/ymh3190/outstagram-portfolio.git"
   },
   "author": "Min-hoe Yoo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ymh3190/instagram-portfolio/issues"
+    "url": "https://github.com/ymh3190/outstagram-portfolio/issues"
   },
-  "homepage": "https://github.com/ymh3190/instagram-portfolio#readme",
+  "homepage": "https://github.com/ymh3190/outstagram-portfolio#readme",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "body-parser": "^1.19.0",

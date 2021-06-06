@@ -58,6 +58,8 @@ mixin articleBlock(post)
                     const minutes = Math.floor(seconds/60) 
                     const hours = Math.floor(minutes/60)
                     const days = Math.floor(hours/24)
+                    const weeks = Math.floor(days/7)
+                    const months = Math.floor(weeks/4)
                 a(href="")
                     if seconds < 60
                         if seconds == 1
@@ -79,6 +81,16 @@ mixin articleBlock(post)
                             time #{days} day ago
                         else 
                             time #{days} days ago
+                    else if weeks < 4
+                        if weeks == 1
+                            time #{weeks} week ago
+                        else 
+                            time #{weeks} weeks ago
+                    else if months < 12
+                        if months == 1
+                            time #{months} month ago
+                        else 
+                            time #{months} months ago
             section
                 form(method="post")
                     button
