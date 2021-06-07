@@ -2,9 +2,7 @@ import passport from "passport";
 import User from "../models/User";
 import routes from "../routes";
 
-export const getEmailSignup = (_, res) => {
-  return res.render("emailSignup");
-};
+export const getEmailSignup = (_, res) => res.render("emailSignup");
 export const postEmailSignup = async (req, res, next) => {
   const {
     body: { email, fullName, username, password },
@@ -24,9 +22,7 @@ export const postEmailSignup = async (req, res, next) => {
   }
 };
 
-export const getLogin = (_, res) => {
-  return res.render(`login`);
-};
+export const getLogin = (_, res) => res.render(`login`);
 export const postLogin = passport.authenticate("local", {
   failureRedirect: `/accounts${routes.login}`,
   successRedirect: routes.home,
@@ -159,9 +155,7 @@ export const postGoogleLogin = async (_, __, profile, cb) => {
   }
 };
 
-export const getEditProfile = (_, res) => {
-  res.render("editProfile");
-};
+export const getEditProfile = (_, res) => res.render("editProfile");
 export const postEditProfile = async (req, res) => {
   const {
     user: { id },
@@ -183,13 +177,6 @@ export const postEditProfile = async (req, res) => {
         phoneNumber: body.phoneNumber,
         gender: body.gender,
       });
-      // await user.updateOne({ name: body.name });
-      // await user.updateOne({ username: body.username });
-      // await user.updateOne({ website: body.website });
-      // await user.updateOne({ textarea: body.textarea });
-      // await user.updateOne({ email: body.email });
-      // await user.updateOne({ phoneNumber: body.phoneNumber });
-      // await user.updateOne({ gender: body.gender });
       return res.redirect(`/accounts${routes.editProfile}`);
     } else {
       throw Error;
@@ -197,5 +184,29 @@ export const postEditProfile = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.redirect(`/accounts${routes.editProfile}`);
+  } finally {
+    res.end();
+  }
+};
+
+export const getChangePassword = (_, res) => res.render("changePassword");
+export const postChangePassword = async (req, res) => {
+  const {
+    body: { oldPassword, newPassword, confirmNewPassword },
+  } = req;
+
+  try {
+    if (newPassword === confirmNewPassword) {
+      console.log("asd");
+      await req.user.changePassword(oldPassword, newPassword);
+      return res.redirect(`/accounts${routes.changePassword}`);
+    } else {
+      throw Error;
+    }
+  } catch (error) {
+    console.log(error);
+    return res.redirect(`/accounts${routes.changePassword}`);
+  } finally {
+    res.end();
   }
 };

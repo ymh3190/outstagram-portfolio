@@ -24,7 +24,8 @@ header
                     span 27
                     | following
         div
-            h1 name
+            h1=loggedUser.name
             br
-            span description
+            span=loggedUser.bio
+            a(href=`${loggedUser.website}`)=loggedUser.website
             

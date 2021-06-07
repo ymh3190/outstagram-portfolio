@@ -1,9 +1,11 @@
 import express from "express";
 import {
+  getChangePassword,
   getEditProfile,
   getEmailSignup,
   getLogin,
   logout,
+  postChangePassword,
   postEditProfile,
   postEmailSignup,
   postLogin,
@@ -11,17 +13,20 @@ import {
 import { uploadProfilePhoto } from "../middlewares";
 import routes from "../routes";
 
-const rootRouter = express.Router();
+const accountsRouter = express.Router();
 
-rootRouter.get(routes.emailSignup, getEmailSignup);
-rootRouter.post(routes.emailSignup, postEmailSignup, postLogin);
+accountsRouter.get(routes.emailSignup, getEmailSignup);
+accountsRouter.post(routes.emailSignup, postEmailSignup, postLogin);
 
-rootRouter.get(routes.login, getLogin);
-rootRouter.post(routes.login, postLogin);
+accountsRouter.get(routes.login, getLogin);
+accountsRouter.post(routes.login, postLogin);
 
-rootRouter.get(routes.logout, logout);
+accountsRouter.get(routes.logout, logout);
 
-rootRouter.get(routes.editProfile, getEditProfile);
-rootRouter.post(routes.editProfile, uploadProfilePhoto, postEditProfile);
+accountsRouter.get(routes.editProfile, getEditProfile);
+accountsRouter.post(routes.editProfile, uploadProfilePhoto, postEditProfile);
 
-export default rootRouter;
+accountsRouter.get(routes.changePassword, getChangePassword);
+accountsRouter.post(routes.changePassword, postChangePassword);
+
+export default accountsRouter;
