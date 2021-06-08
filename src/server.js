@@ -1,6 +1,5 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-import bodyParser from "body-parser";
 import morgan from "morgan";
 import path from "path";
 import passport from "passport";
@@ -23,8 +22,8 @@ app.set("views", path.join(__dirname, "views"));
 app.use("/static", express.static(path.join(__dirname, "static")));
 app.use("/uploads", express.static(path.join("uploads")));
 app.use(cookieParser());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     secret: process.env.COOKIE_SECRET,

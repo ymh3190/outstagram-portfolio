@@ -15,18 +15,19 @@ import routes from "../routes";
 
 const accountsRouter = express.Router();
 
-accountsRouter.get(routes.emailSignup, getEmailSignup);
-accountsRouter.post(routes.emailSignup, postEmailSignup, postLogin);
-
-accountsRouter.get(routes.login, getLogin);
-accountsRouter.post(routes.login, postLogin);
-
+accountsRouter.route(routes.login).get(getLogin).post(postLogin);
 accountsRouter.get(routes.logout, logout);
-
-accountsRouter.get(routes.editProfile, getEditProfile);
-accountsRouter.post(routes.editProfile, uploadProfilePhoto, postEditProfile);
-
-accountsRouter.get(routes.changePassword, getChangePassword);
-accountsRouter.post(routes.changePassword, postChangePassword);
+accountsRouter
+  .route(routes.emailSignup)
+  .get(getEmailSignup)
+  .post(postEmailSignup, postLogin);
+accountsRouter
+  .route(routes.editProfile)
+  .get(getEditProfile)
+  .post(uploadProfilePhoto, postEditProfile);
+accountsRouter
+  .route(routes.changePassword)
+  .get(getChangePassword)
+  .post(postChangePassword);
 
 export default accountsRouter;

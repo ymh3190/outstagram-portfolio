@@ -5,7 +5,7 @@ mixin articleBlock(post)
                 div
                     canvas
                     a(href=routes.user(post.creator.username)) 
-                        img(src="../../static/59950687.png", alt="profile photo" width="50" height="50")
+                        img(src=`${post.creator.profilePhoto}`, alt="profile photo" width="50" height="50")
                 div
                     div
                         span
@@ -62,35 +62,17 @@ mixin articleBlock(post)
                     const months = Math.floor(weeks/4)
                 a(href="")
                     if seconds < 60
-                        if seconds == 1
-                            time #{seconds} second ago
-                        else
-                            time #{seconds} seconds ago
+                        time #{seconds} #{seconds === 1 ? "second" : "seconds"} ago
                     else if minutes < 60
-                        if minutes == 1
-                            time #{minutes} minute ago
-                        else
-                            time #{minutes} minutes ago
+                        time #{minutes} #{minutes === 1 ? "minute" : "minutes"} ago
                     else if hours < 24
-                        if hours == 1
-                            time #{hours} hour ago
-                        else 
-                            time #{hours} hours ago
+                        time #{hours} #{hours === 1 ? "hour" : "hours"} ago
                     else if days < 7
-                        if days == 1
-                            time #{days} day ago
-                        else 
-                            time #{days} days ago
+                        time #{days} #{days === 1 ? "day" : "days"} ago
                     else if weeks < 4
-                        if weeks == 1
-                            time #{weeks} week ago
-                        else 
-                            time #{weeks} weeks ago
+                        time #{weeks} #{weeks === 1 ? "week" : "weeks"} ago
                     else if months < 12
-                        if months == 1
-                            time #{months} month ago
-                        else 
-                            time #{months} months ago
+                        time #{months} #{months === 1 ? "month" : "months"} ago
             section
                 form(method="post")
                     button

@@ -5,7 +5,9 @@ import routes from "../routes";
 
 const createRouter = express.Router();
 
-createRouter.get(routes.createPost, getCreatePost);
-createRouter.post(routes.createPost, uploadPost, postCreatePost);
+createRouter
+  .route(routes.createPost)
+  .get(getCreatePost)
+  .post(uploadPost, postCreatePost);
 
 export default createRouter;
