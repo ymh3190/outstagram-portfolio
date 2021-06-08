@@ -3,15 +3,11 @@ extends layouts/main
 block content
     include ./partials/mainHeader
     include ./partials/mainNav
-    div
-        article
+    div(style="display: grid; grid-template-columns: repeat(3, 1fr);")
+        each post in posts.reverse()
             div
-                div
-                    div
-                        img(src="", alt="Photo")
-                div 
-                    div
-                        img(src="", alt="Photo")
-                div 
-                    div
-                        img(src="", alt="Photo")
+                a(href=routes.posts(post.id))
+                    if post.type == "image"
+                        img(src=post.url, alt="post" style="width:400px; height:400px; object-fit: fill;")
+                    else if post.type == "video"
+                        video(src=post.url, alt="post" style="width:400px; height:400px; object-fit: fill;" controls)

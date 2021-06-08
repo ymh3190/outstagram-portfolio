@@ -7,7 +7,8 @@ import {
   kakaoLogin,
 } from "../controllers/accountsController";
 import { getExplore, home, posts } from "../controllers/postController";
-import { user } from "../controllers/userController";
+import { getUser, postUser } from "../controllers/userController";
+import { uploadProfilePhoto } from "../middlewares";
 import routes from "../routes";
 
 const rootRouter = express.Router();
@@ -52,6 +53,6 @@ rootRouter.get(
 );
 
 rootRouter.get(routes.posts(), posts);
-rootRouter.get(routes.user(), user);
+rootRouter.route(routes.user()).get(getUser).post(uploadProfilePhoto, postUser);
 
 export default rootRouter;

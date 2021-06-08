@@ -1,7 +1,22 @@
 header
     div
-        button
+        button#btn
             img(src=`${loggedUser.profilePhoto ? loggedUser.profilePhoto : ""}`, alt="Change Profile Photo" width="100" height="100")
+    div(style="display: none;")
+                form#form(method="post" enctype="multipart/form-data")
+                    input(type="file", name="profilePhotoFile" accept="image/*")
+    script.
+        const btn = document.getElementById("btn");
+        const input = document.querySelector("#form input");
+        const url = window.location.href;
+        const handleClick = (event) => {
+            event.stopPropagation();
+            input.click();
+            input.addEventListener("change", () => document.getElementById("form").submit(), () => {
+                fetch(url, { method: "POST" })
+            })
+        }
+        btn.addEventListener("click", handleClick);
     section 
         div
             h2=loggedUser.username
