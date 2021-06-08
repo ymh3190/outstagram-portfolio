@@ -10,7 +10,7 @@ block content
         div
             div
                 button#btn1
-                    img(src=`${loggedUser.profilePhoto}`, alt="Change Profile Photo" width="50" height="50")
+                    img(src=`${loggedUser.profilePhoto ? loggedUser.profilePhoto : ""}`, alt="Change Profile Photo" width="50" height="50")
                 div(style="display: none;")
                     form#form1(method="post" enctype="multipart/form-data")
                         input(type="file", name="profilePhotoFile" accept="image/*")

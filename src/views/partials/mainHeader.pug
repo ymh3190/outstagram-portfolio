@@ -1,7 +1,7 @@
 header
     div
         button
-            img(src=`${loggedUser.profilePhoto}`, alt="Change Profile Photo" width="100" height="100")
+            img(src=`${loggedUser.profilePhoto ? loggedUser.profilePhoto : ""}`, alt="Change Profile Photo" width="100" height="100")
     section 
         div
             h2=loggedUser.username

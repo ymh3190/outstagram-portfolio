@@ -15,7 +15,7 @@ export const postEmailSignup = async (req, res, next) => {
       username,
     });
     await User.register(newUser, password);
-    return next();
+    next();
   } catch (error) {
     console.log(error);
     return res.redirect(`/accounts${routes.emailSignup}`);
@@ -197,15 +197,12 @@ export const postChangePassword = async (req, res) => {
 
   try {
     if (newPassword === confirmNewPassword) {
-      console.log("asd");
       await req.user.changePassword(oldPassword, newPassword);
-      return res.redirect(`/accounts${routes.changePassword}`);
     } else {
       throw Error;
     }
   } catch (error) {
     console.log(error);
-    return res.redirect(`/accounts${routes.changePassword}`);
   } finally {
     res.end();
   }
