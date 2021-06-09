@@ -1,10 +1,10 @@
 {
-  "name": "instagram-portfolio",
+  "name": "outstagram-portfolio",
   "version": "1.0.0",
   "description": "Implements Instagram with node & vanilla javascript",
   "main": "index.js",
   "scripts": {
-    "dev:server": "nodemon --exec babel-node src/init.js --delay 2",
+    "dev:server": "nodemon --exec babel-node src/init.js",
     "dev:assets": "cross-env WEBPACK_ENV=development webpack -w",
     "build:assets": "cross-env WEBPACK_ENV=production webpack"
   },

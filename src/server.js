@@ -12,13 +12,14 @@ import userRouter from "./routers/userRouter";
 import createRouter from "./routers/createRouter";
 import accountsRouter from "./routers/accountsRouter";
 import postRouter from "./routers/postRouter";
+import apiRouter from "./routers/apiRouter";
 
 import "./passport";
 
 const app = express();
 
 app.set("view engine", "pug");
-app.set("views", path.join(__dirname, "views"));
+app.set("views", process.cwd() + "/src/views");
 app.use("/static", express.static(path.join(__dirname, "static")));
 app.use("/uploads", express.static(path.join("uploads")));
 app.use(cookieParser());
@@ -43,6 +44,7 @@ app.use(routes.create, createRouter);
 app.use(routes.accounts, accountsRouter);
 app.use(routes.create, createRouter);
 app.use(routes.posts(), postRouter);
+app.use(routes.api, apiRouter);
 app.use(routes.user(), userRouter);
 
 export default app;

@@ -46,7 +46,15 @@
       google
 
 - [x] post
-- [] eddit user's profile
+
+      post video or photo
+
+- [x] edit user's profile
+
+      edit name, username, email, bio, website, gender, phone number
+      change password
+
+- [] search
 - [] save the post
 - [] VideoController
 - [] follower

@@ -41,6 +41,10 @@ const KAKAO_CALLBACK = "/auth/kakao/callback";
 const GOOGLE = "/auth/google";
 const GOOGLE_CALLBACK = "/auth/google/callback";
 
+// API
+const API = "/api";
+const SEARCH_USER = "/search/user";
+
 const routes = {
   home: HOME,
   explore: EXPLORE,
@@ -79,6 +83,8 @@ const routes = {
   kakaoCallback: KAKAO_CALLBACK,
   google: GOOGLE,
   googleCallback: GOOGLE_CALLBACK,
+  api: API,
+  searchUser: SEARCH_USER,
 };
 
 export default routes;

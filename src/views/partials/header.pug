@@ -2,14 +2,64 @@ header
     div
         div
             a(href=routes.home) Outstagram
-        div
-            input(type="text" placeholder="Search" value="")
+        div#focus
+            input#search(type="text" placeholder="Search")
             div
-                div(aria-hidden="true")
+                div(aria-hidden="false")
                     div
                         h4 Recent
-                        div No recent searches.
-                    div 
+                        if loggedUser.searchUsers.length !== 0
+                            button(type="button") Clear All
+                    if loggedUser.searchUsers.length === 0
+                        div
+                            div No recent searches.
+                    else
+                        ul
+                            each searchUser in loggedUser.searchUsers
+                                div
+                                    a(href=`${routes.user(searchUser.username)}`)
+                                        div
+                                            div
+                                                a(href=`${routes.user(searchUser.username)}`)
+                                                    img(src=`${searchUser.profilePhoto}`, alt="Profile Photo") 
+                                            div
+                                                div(id=`${searchUser.id}`)
+                                                    div=searchUser.username
+                                                div 
+                                            div 
+
+        script.
+            const root = document.querySelector(".root");
+            const focus = document.getElementById("focus");
+            const search = document.getElementById("search");
+            let isFocus = false;
+            
+            const handleClick = (event) => {
+                if (event.target !== focus) {
+                    isFocus = false;
+                    search.addEventListener("focus", handleFocus);
+                }
+            }
+            const handleKeydown = () => {
+                fetch("/api/search/user", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        search: search.value
+                    })
+                });
+            }
+            const handleFocus = (event) => {
+                event.preventDefault();
+                isFocus = true;
+                
+                search.removeEventListener("focus", handleFocus);
+                search.addEventListener("keydown", handleKeydown);
+                root.addEventListener("click", handleClick);
+            }
+            search.addEventListener("focus", handleFocus);
         div
             div
                 a(href="/create"+routes.createPost)

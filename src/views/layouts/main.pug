@@ -6,10 +6,11 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="icon" href="data:;base64,iVBORw0KGgo=")
         script(src="https://kit.fontawesome.com/baa94097a5.js" crossorigin="anonymous")
+        link(rel="stylesheet" href="https://unpkg.com/mvp.css")
         link(rel="stylesheet", href="/static/styles.css")
-        title Name (@yusername) • #{siteName}
+        title #{name} (@#{username}) • #{siteName}
     body
-        div
+        .root
             if loggedUser
                 form(method="post" enctype="multipart/form-data" role="presentation")
                     input(type="file" accept="image/*, video/*")

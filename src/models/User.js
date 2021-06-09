@@ -23,6 +23,12 @@ const UserSchema = new mongoose.Schema({
   bio: String,
   phoneNumber: String,
   gender: String,
+  searchUsers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 UserSchema.plugin(passportLocalMongoose, { usernameField: "email" });
