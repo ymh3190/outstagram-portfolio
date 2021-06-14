@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
   bio: String,
   phoneNumber: String,
   gender: String,
-  searchUsers: [
+  searches: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

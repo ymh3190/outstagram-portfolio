@@ -4,6 +4,6 @@ import routes from "../routes";
 
 const apiRouter = express.Router();
 
-apiRouter.route(routes.searchUser).post(searchUser);
+apiRouter.post(routes.searchUser, searchUser);
 
 export default apiRouter;

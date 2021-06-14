@@ -4,10 +4,11 @@ import routes from "../routes";
 
 export const home = async (req, res) => {
   if (req.user) {
-    const posts = await Post.find({ creator: req.user.id })
+    const user = await User.findById({ _id: req.user.id }).populate("searches");
+    const posts = await Post.find({ creator: user.id })
       .populate("creator")
       .populate("comments");
-    return res.render("home", { posts });
+    return res.render("home", { posts, loggedUser: user });
   } else {
     return res.render("home");
   }

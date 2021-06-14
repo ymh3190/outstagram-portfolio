@@ -9,14 +9,15 @@ header
         const btn = document.getElementById("btn");
         const input = document.querySelector("#form input");
         const url = window.location.href;
-        const handleClick = (event) => {
+        
+        const handlePhoto = (event) => {
             event.stopPropagation();
             input.click();
             input.addEventListener("change", () => document.getElementById("form").submit(), () => {
                 fetch(url, { method: "POST" })
             })
         }
-        btn.addEventListener("click", handleClick);
+        btn.addEventListener("click", handlePhoto);
     section 
         div
             h2=loggedUser.username

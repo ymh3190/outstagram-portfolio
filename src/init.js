@@ -3,6 +3,7 @@ import "./db";
 import "./models/Comment";
 import "./models/Post";
 import "./models/User";
+import "./models/Search";
 import app from "./server";
 
 const PORT = process.env.PORT || 8080;

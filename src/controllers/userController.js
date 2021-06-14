@@ -6,6 +6,8 @@ export const getUser = async (req, res) => {
   if (req.user) {
     const posts = await Post.find({ creator: req.user.id });
     return res.render("user", { posts });
+  } else {
+    return res.render("user", { posts: [] });
   }
 };
 export const postUser = async (req, res) => {
@@ -32,7 +34,6 @@ export const getChannel = (_, res) => res.render("channel");
 export const getSaved = (_, res) => res.render("saved");
 export const getTagged = (_, res) => res.render("tagged");
 
-// API
 export const searchUser = async (req, res) => {
   const {
     body: { search },
@@ -40,20 +41,21 @@ export const searchUser = async (req, res) => {
 
   try {
     if (search) {
-      const users = await User.find({}).populate("searchUsers");
-      const searchUsers = users.filter(
-        (user) => user.name === search || user.username === search
-      );
-      searchUsers.forEach((user) => {
-        console.log(req.user.searchUsers.indexOf(user.id));
-        if (req.user.searchUsers.indexOf(user.id) === -1) {
-          req.user.searchUsers.push(user);
+      const users = await User.find({
+        $or: [
+          { name: { $regex: search, $options: "i" } },
+          { username: { $regex: search, $options: "i" } },
+        ],
+      });
+      users.forEach(async (user) => {
+        if (req.user.searches.indexOf(user.id) === -1) {
+          req.user.searches.push(user);
+          await req.user.save();
         }
       });
-      await req.user.save();
     }
   } catch (error) {
-    console.log(error);
+    throw Error;
   } finally {
     res.end();
   }

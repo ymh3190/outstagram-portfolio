@@ -8,14 +8,14 @@ header
                 div(aria-hidden="false")
                     div
                         h4 Recent
-                        if loggedUser.searchUsers.length !== 0
+                        if loggedUser.searches.length !== 0
                             button(type="button") Clear All
-                    if loggedUser.searchUsers.length === 0
+                    if loggedUser.searches.length === 0
                         div
                             div No recent searches.
                     else
-                        ul
-                            each searchUser in loggedUser.searchUsers
+                        ul#searches(style="display: none;")
+                            each searchUser in loggedUser.searches
                                 div
                                     a(href=`${routes.user(searchUser.username)}`)
                                         div
@@ -26,35 +26,48 @@ header
                                                 div(id=`${searchUser.id}`)
                                                     div=searchUser.username
                                                 div 
-                                            div 
-
+                                            div
         script.
             const root = document.querySelector(".root");
             const focus = document.getElementById("focus");
             const search = document.getElementById("search");
+            const searches = document.getElementById("searches");
+
             let isFocus = false;
             
             const handleClick = (event) => {
-                if (event.target !== focus) {
+                if (event.target !== search) { 
                     isFocus = false;
+
+                    if (searches) {
+                        searches.style.display = "none";
+                    }
+
                     search.addEventListener("focus", handleFocus);
+                    root.removeEventListener("click", handleClick);
                 }
             }
             const handleKeydown = () => {
-                fetch("/api/search/user", {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        search: search.value
-                    })
-                });
+                if (search.value){
+                    fetch("/api/search/user", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            search: search.value
+                        })
+                    });
+                }
             }
             const handleFocus = (event) => {
-                event.preventDefault();
+                event.stopPropagation();
                 isFocus = true;
-                
+
+                if (searches) {
+                    searches.style.display = "block";
+                }
+
                 search.removeEventListener("focus", handleFocus);
                 search.addEventListener("keydown", handleKeydown);
                 root.addEventListener("click", handleClick);
