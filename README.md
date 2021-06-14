@@ -54,7 +54,7 @@
       edit name, username, email, bio, website, gender, phone number
       change password
 
-- [] search
+- [x] search
 - [] save the post
 - [] VideoController
 - [] follower

@@ -41,15 +41,24 @@ header
 
                     if (searches) {
                         searches.style.display = "none";
+                        fetch("/api/search/user", {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                search: ""
+                            })
+                        });
                     }
 
                     search.addEventListener("focus", handleFocus);
                     root.removeEventListener("click", handleClick);
                 }
             }
-            const handleKeydown = () => {
-                if (search.value){
-                    fetch("/api/search/user", {
+            const handleKeydown = async () => {
+                if (search.value) {
+                    await fetch("/api/search/user", {
                         method: "POST",
                         headers: {
                             'Content-Type': 'application/json'

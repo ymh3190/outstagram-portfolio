@@ -53,6 +53,11 @@ export const searchUser = async (req, res) => {
           await req.user.save();
         }
       });
+    } else {
+      for (let i = 0; i < req.user.searches.length; i += 1) {
+        req.user.searches.pop();
+      }
+      await req.user.save();
     }
   } catch (error) {
     throw Error;
