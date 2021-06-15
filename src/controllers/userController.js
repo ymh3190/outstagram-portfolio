@@ -4,8 +4,9 @@ import routes from "../routes";
 
 export const getUser = async (req, res) => {
   if (req.user) {
+    const user = await User.findById({ _id: req.user.id }).populate("searches");
     const posts = await Post.find({ creator: req.user.id });
-    return res.render("user", { posts });
+    return res.render("user", { posts, loggedUser: user });
   } else {
     return res.render("user", { posts: [] });
   }

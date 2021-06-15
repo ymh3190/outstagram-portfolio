@@ -19,7 +19,8 @@ import "./passport";
 const app = express();
 
 app.set("view engine", "pug");
-app.set("views", process.cwd() + "/src/views");
+app.set("views", `${process.cwd()}/src/views`);
+// app.set("views", process.cwd() + "/src/views");
 app.use("/static", express.static(path.join(__dirname, "static")));
 app.use("/uploads", express.static(path.join("uploads")));
 app.use(cookieParser());
@@ -40,11 +41,10 @@ app.use(passport.session());
 app.use(localsMiddleware);
 
 app.use(routes.home, rootRouter);
-app.use(routes.create, createRouter);
 app.use(routes.accounts, accountsRouter);
 app.use(routes.create, createRouter);
 app.use(routes.posts(), postRouter);
-app.use(routes.api, apiRouter);
 app.use(routes.user(), userRouter);
+app.use(routes.api, apiRouter);
 
 export default app;

@@ -3,7 +3,7 @@ const HOME = "/";
 const EXPLORE = "/explore";
 
 // User
-const USER = "/:id";
+const USER = "/:id([0-9a-z]\\w+)";
 const CHANNEL = "/channel";
 const SAVED = "/saved";
 const TAGGED = "/tagged";
@@ -21,7 +21,7 @@ const EDIT_PROFILE = "/edit";
 const CHANGE_PASSWORD = "/password/change";
 
 // Post
-const POSTS = "/posts/:id";
+const POSTS = "/posts/:id([0-9a-z]\\w+)";
 const LIKE_BY = "/like_by";
 const EDIT_POST = "/edit";
 

@@ -14,9 +14,16 @@ export const home = async (req, res) => {
   }
 };
 
-export const getExplore = async (_, res) => {
-  const posts = await Post.find({});
-  return res.render("explore", { posts });
+export const getExplore = async (req, res) => {
+  if (req.user) {
+    const user = await User.findById({ _id: req.user.id }).populate("searches");
+    const posts = await Post.find({ creator: user.id })
+      .populate("creator")
+      .populate("comments");
+    return res.render("explore", { posts, loggedUser: user });
+  } else {
+    return res.render("explore");
+  }
 };
 
 export const getCreatePost = (_, res) => res.render("createPost");
