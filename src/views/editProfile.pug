@@ -17,14 +17,14 @@ block content
                 script.
                     const btn = document.getElementById("btn1");
                     const input = document.querySelector("#form1 input");
-                    const handleClick = (event) => {
+                    const handlePhoto = (event) => {
                         event.stopPropagation();
                         input.click();
                         input.addEventListener("change", () => document.getElementById("form1").submit(), () => {
                             fetch("/accounts/edit", { method: "POST" })
                         })
                     }
-                    btn.addEventListener("click", handleClick);
+                    btn.addEventListener("click", handlePhoto);
             div 
                 h1=loggedUser.username
                 button#btn2(type="button") Change Profile Photo

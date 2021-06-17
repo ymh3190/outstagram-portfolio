@@ -36,13 +36,14 @@ export const postCreatePost = async (req, res) => {
   try {
     const user = await User.findById(id);
     if (user && file) {
-      await Post.create({
+      const post = await Post({
         url: file.path,
         type: file.mimetype.split("/")[0],
         title,
         caption,
         creator: user,
       });
+      await post.save();
       return res.redirect(routes.home);
     } else {
       throw Error;

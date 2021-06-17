@@ -16,6 +16,9 @@ const rootRouter = express.Router();
 rootRouter.get(routes.home, home);
 rootRouter.get(routes.explore, getExplore);
 
+rootRouter.route(routes.user()).get(getUser).post(uploadProfilePhoto, postUser);
+rootRouter.get(routes.posts(), posts);
+
 rootRouter.get(routes.github, githubLogin);
 rootRouter.get(
   routes.githubCallback,
@@ -51,8 +54,5 @@ rootRouter.get(
     res.redirect(routes.home);
   }
 );
-
-rootRouter.get(routes.posts(), posts);
-rootRouter.route(routes.user()).get(getUser).post(uploadProfilePhoto, postUser);
 
 export default rootRouter;
