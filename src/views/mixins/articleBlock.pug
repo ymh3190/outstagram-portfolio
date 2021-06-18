@@ -13,8 +13,9 @@ mixin articleBlock(post)
                     div
                         a(href="") location 
             div
-                button
-                    i.fas.fa-ellipsis-h
+                a(href=`/posts/${post.id}`+routes.deletePost)
+                    button
+                        i.fas.fa-ellipsis-h
         div.article-main
             div
                 if post.type == "image"

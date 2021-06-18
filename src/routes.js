@@ -24,6 +24,7 @@ const CHANGE_PASSWORD = "/password/change";
 const POSTS = "/posts/:id([0-9a-z]\\w+)";
 const LIKE_BY = "/like_by";
 const EDIT_POST = "/edit";
+const DELETE_POST = "/delete";
 
 // Github
 const GITHUB = "/auth/github";
@@ -75,6 +76,7 @@ const routes = {
   },
   likeBy: LIKE_BY,
   editPost: EDIT_POST,
+  deletePost: DELETE_POST,
   github: GITHUB,
   githubCallback: GITHUB_CALLBACK,
   facebook: FACEBOOK,

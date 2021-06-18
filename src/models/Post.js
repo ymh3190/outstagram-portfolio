@@ -30,9 +30,5 @@ const postSchema = new mongoose.Schema({
   ],
 });
 
-postSchema.pre("save", async function () {
-  console.log("test", this);
-});
-
 const model = mongoose.model("Post", postSchema);
 export default model;

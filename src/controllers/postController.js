@@ -61,3 +61,9 @@ export const posts = (req, res) => {
 export const getLikeBy = (_, res) => {
   return res.send("likeBy");
 };
+
+export const deletePost = async (req, res) => {
+  const id = req.baseUrl.split("posts/")[1];
+  await Post.findByIdAndDelete(id);
+  return res.redirect(routes.home);
+};
