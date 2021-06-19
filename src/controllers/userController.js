@@ -38,6 +38,7 @@ export const getSaved = async (req, res) => {
 };
 export const getTagged = (_, res) => res.render("tagged");
 
+// API
 export const searchUser = async (req, res) => {
   const {
     body: { search },

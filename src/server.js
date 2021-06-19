@@ -20,7 +20,6 @@ const app = express();
 
 app.set("view engine", "pug");
 app.set("views", `${process.cwd()}/src/views`);
-// app.set("views", process.cwd() + "/src/views");
 app.use("/static", express.static(path.join(__dirname, "static")));
 app.use("/uploads", express.static(path.join("uploads")));
 app.use(cookieParser());

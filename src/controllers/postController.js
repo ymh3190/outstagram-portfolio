@@ -80,6 +80,9 @@ export const savePost = async (req, res) => {
     if (user.saves.indexOf(post.id) === -1) {
       user.saves.push(post);
       await user.save();
+    } else {
+      user.saves.splice(user.saves.indexOf(post.id), 1);
+      await user.save();
     }
   } catch (error) {
     console.log(error);

@@ -5,6 +5,24 @@ block content
     if loggedUser
         each post in posts
             +articleBlock(post)
+        script.
+            const bookmarks = document.querySelectorAll(".article-footer .bookmark");
+
+            const handleBokkmark = (event) => {
+                console.log(event.target.getAttribute("id"));
+                fetch("/api/save/post", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        data: event.target.getAttribute("id")
+                    })
+                });
+            }
+            Array.from(bookmarks).forEach(bookmark => {
+                bookmark.addEventListener("click", handleBokkmark);
+            })
         //- 사이드바
         div
     else
