@@ -29,6 +29,12 @@ const userSchema = new mongoose.Schema({
       ref: "User",
     },
   ],
+  saves: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Post",
+    },
+  ],
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: "email" });

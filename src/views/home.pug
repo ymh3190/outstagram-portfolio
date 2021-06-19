@@ -3,7 +3,7 @@ include mixins/articleBlock
 
 block content
     if loggedUser
-        each post in posts.reverse()
+        each post in posts
             +articleBlock(post)
         //- 사이드바
         div

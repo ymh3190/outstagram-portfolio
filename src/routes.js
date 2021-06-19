@@ -45,6 +45,7 @@ const GOOGLE_CALLBACK = "/auth/google/callback";
 // API
 const API = "/api";
 const SEARCH_USER = "/search/user";
+const SAVE_POST = "/save/post";
 
 const routes = {
   home: HOME,
@@ -87,6 +88,7 @@ const routes = {
   googleCallback: GOOGLE_CALLBACK,
   api: API,
   searchUser: SEARCH_USER,
+  savePost: SAVE_POST,
 };
 
 export default routes;

@@ -6,6 +6,7 @@ export const home = async (req, res) => {
   if (req.user) {
     const user = await User.findById({ _id: req.user.id }).populate("searches");
     const posts = await Post.find({ creator: user.id })
+      .sort({ createdAt: "desc" })
       .populate("creator")
       .populate("comments");
     return res.render("home", { posts, loggedUser: user });
@@ -66,4 +67,23 @@ export const deletePost = async (req, res) => {
   const id = req.baseUrl.split("posts/")[1];
   await Post.findByIdAndDelete(id);
   return res.redirect(routes.home);
+};
+
+// API
+export const savePost = async (req, res) => {
+  const { data } = req.body;
+  const { id } = req.user;
+
+  try {
+    const post = await Post.findById(data);
+    const user = await User.findById(id);
+    if (user.saves.indexOf(post.id) === -1) {
+      user.saves.push(post);
+      await user.save();
+    }
+  } catch (error) {
+    console.log(error);
+  } finally {
+    res.end();
+  }
 };

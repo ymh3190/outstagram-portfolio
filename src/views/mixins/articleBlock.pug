@@ -33,7 +33,23 @@ mixin articleBlock(post)
                         i.far.fa-map
                 div 
                     span
-                        i.far.fa-bookmark
+                        button.bookmark(type="button" id=`${post.id}`)
+                            i.far.fa-bookmark
+                script.
+                    const bookmark = document.querySelector(".bookmark");
+
+                    const handleBokkmark = (event) => {
+                        fetch("/api/save/post", {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                data: event.target.getAttribute("id"),
+                            })
+                        });
+                    }
+                    bookmark.addEventListener("click", handleBokkmark);
             section
                 a(href=routes.likeBy)
                     span 123,456,789

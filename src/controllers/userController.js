@@ -32,7 +32,10 @@ export const postUser = async (req, res) => {
   }
 };
 export const getChannel = (_, res) => res.render("channel");
-export const getSaved = (_, res) => res.render("saved");
+export const getSaved = async (req, res) => {
+  const user = await User.findById(req.user.id).populate("saves");
+  res.render("saved", { loggedUser: user });
+};
 export const getTagged = (_, res) => res.render("tagged");
 
 export const searchUser = async (req, res) => {
@@ -61,7 +64,7 @@ export const searchUser = async (req, res) => {
       await req.user.save();
     }
   } catch (error) {
-    throw Error;
+    console.log(error);
   } finally {
     res.end();
   }
