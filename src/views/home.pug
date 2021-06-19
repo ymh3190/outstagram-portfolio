@@ -9,7 +9,6 @@ block content
             const bookmarks = document.querySelectorAll(".article-footer .bookmark");
 
             const handleBokkmark = (event) => {
-                console.log(event.target.getAttribute("id"));
                 fetch("/api/save/post", {
                     method: "POST",
                     headers: {
@@ -22,6 +21,46 @@ block content
             }
             Array.from(bookmarks).forEach(bookmark => {
                 bookmark.addEventListener("click", handleBokkmark);
+            })
+        script.
+            const addCommentForms = document.querySelectorAll(".addCommentForm");
+            
+            const handleCommentSubmit = (event) => {
+                event.preventDefault();
+
+                const section = event.target.parentNode.parentNode.querySelector("section");
+                const divs = section.querySelectorAll("div");
+                const id = divs[1].querySelector("button").getAttribute("id");
+                const username = document.querySelector(".root header div").querySelector(".fa-user-circle").parentNode.getAttribute("href").split("/")[1];
+
+                fetch("/api/add/comment", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        data: event.target.querySelector("textarea").value,
+                        id: id,
+                        username: username
+                    })
+                });
+
+                const comments = document.querySelector(".comments");
+                const div = document.createElement("div");
+                div.className = "post-comment-root";
+                const h2 = document.createElement("h2");
+                h2.innerText = username;
+                const span = document.createElement("span");
+                span.innerText = event.target.querySelector("textarea").value
+                div.appendChild(h2);
+                div.appendChild(span);
+                comments.appendChild(div);
+
+                event.target.querySelector("textarea").value = "";
+            }
+
+            Array.from(addCommentForms).forEach(addCommentForm => {
+                addCommentForm.addEventListener("submit", handleCommentSubmit);
             })
         //- 사이드바
         div

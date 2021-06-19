@@ -10,6 +10,6 @@ block content
                     div
                         div
                             if save.type === 'image'
-                                img(src="/"+save.url, alt="post" width="400px" height="400px")
+                                img(src="/"+save.url, alt="post" style="width:400px; height:400px; object-fit: fill;")
                             else if save.type === 'video'
-                                video(src="/"+save.url width="400px" height="400px") 
+                                video(src="/"+save.url style="width:400px; height:400px; object-fit: fill;" controls) 

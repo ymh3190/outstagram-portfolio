@@ -55,7 +55,7 @@
       change password
 
 - [x] search
-- [] save the post
+- [x] save the post
 - [] VideoController
 - [] follower
 - [] following

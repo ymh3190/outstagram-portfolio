@@ -43,17 +43,19 @@ mixin articleBlock(post)
                 div.post-comment-root
                     h2=post.creator.username
                     span=post.caption
-                div.post-comment-root
-                    if post.comments.length > 1
+                if post.comments.length > 1
+                    div.post-comment-root
                         a(href="") View all 
                             span=post.comments.length
                             | comments
                 if post.comments.length > 0
                     div.post-comment-root
-                        div.comment
-                            span=post.comments[0].creator.username
-                            span=post.comments[0].text
-                        span.heart
+                        each comment in post.comments
+                            div.comment
+                                span=comment.creator
+                                br
+                                span=comment.text
+                            span.heart=heart
             div.datetime
                 -
                     const seconds = Math.floor((new Date - post.createdAt)/1000)
@@ -76,8 +78,8 @@ mixin articleBlock(post)
                     else if months < 12
                         time #{months} #{months === 1 ? "month" : "months"} ago
             section
-                form(method="post")
+                form.addCommentForm(method="post")
                     button
                         i.far.fa-smile
-                    textarea(name="", placeholder="Add a comment...")
+                    textarea(placeholder="Add a comment...")
                     button(type="submit") Post

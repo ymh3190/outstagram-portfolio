@@ -1,14 +1,15 @@
 import Post from "../models/Post";
 import User from "../models/User";
+import Comment from "../models/Comment";
 import routes from "../routes";
 
 export const home = async (req, res) => {
   if (req.user) {
     const user = await User.findById({ _id: req.user.id }).populate("searches");
-    const posts = await Post.find({ creator: user.id })
-      .sort({ createdAt: "desc" })
+    const posts = await Post.find({ creator: user })
       .populate("creator")
-      .populate("comments");
+      .populate("comments")
+      .sort({ createdAt: "desc" });
     return res.render("home", { posts, loggedUser: user });
   } else {
     return res.render("home");
@@ -84,6 +85,24 @@ export const savePost = async (req, res) => {
       user.saves.splice(user.saves.indexOf(post.id), 1);
       await user.save();
     }
+  } catch (error) {
+    console.log(error);
+  } finally {
+    res.end();
+  }
+};
+
+export const addComment = async (req, res) => {
+  const { data, id, username } = req.body;
+
+  try {
+    const post = await Post.findById(id);
+    const comment = await Comment.create({
+      creator: username,
+      text: data,
+    });
+    post.comments.push(comment);
+    await post.save();
   } catch (error) {
     console.log(error);
   } finally {
